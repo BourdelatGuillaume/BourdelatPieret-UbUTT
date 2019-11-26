@@ -54,6 +54,8 @@
 		898C1208238D1EB900B187AC /* UbUTT */ = {
 			isa = PBXGroup;
 			children = (
+				898C121C238D1EF100B187AC /* Model */,
+				898C121B238D1EE900B187AC /* Core */,
 				898C1209238D1EB900B187AC /* AppDelegate.swift */,
 				898C120B238D1EB900B187AC /* ViewController.swift */,
 				898C120D238D1EB900B187AC /* Main.storyboard */,
@@ -62,6 +64,20 @@
 				898C1215238D1EC700B187AC /* Info.plist */,
 			);
 			path = UbUTT;
+			sourceTree = "<group>";
+		};
+		898C121B238D1EE900B187AC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		898C121C238D1EF100B187AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
