@@ -26,12 +26,26 @@ public class Course{
     private var prix_estime:Double
     private var note_conducteur:Int
     private var note_passager:Int
-    private var passager:Utilisateur
-    private var conducteur:Conducteur
-    private var statut:Statut
+    private var passager:Utilisateur?
+    private var conducteur:Conducteur?
+    private var statut:Statut?
     
-    init(){}
-    
+    init(){
+        self.id_course=0
+        self.id_conducteur=0
+        self.id_passager=0
+        self.id_statut=0
+        self.date=""
+        self.position_conducteur=""
+        self.point_depart=""
+        self.point_arrivee=""
+        self.heure_depart=""
+        self.heure_arrivee=""
+        self.prix_estime=0.0
+        self.note_conducteur = -1
+        self.note_passager = -1
+    }
+    /*
     public func getPassager() -> Utilisateur{
         if(self.passager is NSNull){
             self.passager = Utilisateur.getBDUtilisateurByID(self.id_passager)
@@ -93,7 +107,7 @@ public class Course{
         req.prepare("UPDATE COURSE SET ID_STATUT = ? WHERE ID_COURSE=?")
         req.addParametres(new String[]{String.valueOf(self.id_statut),String.valueOf(self.id_course)})
         req.executerNoResult()
-    }
+    }*/
     
     public func getId_course() -> Int{
         return id_course

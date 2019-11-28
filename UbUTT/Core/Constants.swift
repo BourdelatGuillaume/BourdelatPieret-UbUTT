@@ -44,6 +44,6 @@ public final class Constants{
     
     // OTHERS CONSTANTS
     public final let  earthRadiusInKM:Int = 6371
-    public final let  meterInDegree:Double = (1 / ((2 * Math.PI / 360) * 6378.137)) / 1000  //1 meter in degree
+    public final let  meterInDegree:Double = (1 / ((2 * Double.pi / 360) * 6378.137)) / 1000  //1 meter in degree
     public final let  pricePerMeter:Double = 0.011
 }

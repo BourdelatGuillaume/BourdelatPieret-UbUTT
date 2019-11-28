@@ -16,11 +16,16 @@ public class Conducteur {
     private var id_utilisateur:Int
     private var modele_voiture:String
     private var plaque_immatriculation:String
-    private var courses:Array<Course>
-    private var utilisateur:Utilisateur
+    private var courses:Array<Course>?
+    private var utilisateur:Utilisateur?
     
-    init(){}
-    
+    init(){
+        self.id_conducteur=0
+        self.id_utilisateur=0
+        self.modele_voiture=""
+        self.plaque_immatriculation=""
+    }
+    /*
     public static func getBDConducteurByIDUtilisateur(id:Int) -> Conducteur{
         SQLRequest<Conducteur> req= new SQLRequest<>(Conducteur.class)
         req.prepare("SELECT * FROM CONDUCTEUR WHERE ID_UTILISATEUR = ?")
@@ -70,7 +75,7 @@ public class Conducteur {
         req.prepare("SELECT * FROM CONDUCTEUR WHERE ID_CONDUCTEUR = ?")
         req.addParametres(new String[]{String.valueOf(id)})
         return req.executerOneResult()
-    }
+    }*/
     
     public func getId_conducteur() -> Int{
         return id_conducteur

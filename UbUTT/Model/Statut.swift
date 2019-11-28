@@ -15,14 +15,18 @@ public class Statut {
     private var id_statut:Int
     private var statut:String
     
-    init(){}
+    init(){
+        self.id_statut=0
+        self.statut=""
+    }
     
+    /*
     public static func getBDStatutByID(id:Int) -> Statut{
         SQLRequest<Statut> req = new SQLRequest<>(Statut.class)
         req.prepare("SELECT * FROM STATUT WHERE ID_STATUT= ?")
         req.addParametres(new String[]{String.valueOf(id)})
         return req.executerOneResult()
-    }
+    }*/
     
     public func getId_statut() -> Int{
         return id_statut

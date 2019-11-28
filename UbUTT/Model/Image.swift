@@ -14,9 +14,12 @@ import Foundation
 public class Image { //extends AsyncTask<Void, Void, Bitmap>
     private var id_image:Int
     private var image_url:String
-    private var image_bitmap:Bitmap
+    //private var image_bitmap:Bitmap
     
-    init(){}
+    init(){
+        self.id_image=0
+        self.image_url=""
+    }
     
     /*@Override
     protected Bitmap doInBackground(Void... voids) {
@@ -38,7 +41,7 @@ public class Image { //extends AsyncTask<Void, Void, Bitmap>
     public func setImage_url(image_url:String) -> Void{
         self.image_url = image_url
     }
-    
+    /*
     private func getBitmapFromURL() -> Bitmap{
         if(image_bitmap == NSNull) {
             try {
@@ -97,5 +100,5 @@ public class Image { //extends AsyncTask<Void, Void, Bitmap>
         } catch (InterruptedException e) {
             e.printStackTrace()
         }
-    }
+    }*/
 }

@@ -21,13 +21,21 @@ public class Utilisateur{
     private var password:String
     private var id_image:Int
     
-    private var conducteur:Conducteur
-    private var image:Image
-    private var courses:Array<Course>
+    private var conducteur:Conducteur?
+    private var image:Image?
+    private var courses:Array<Course>?
  
-    init(){}
+    init(){
+        self.id_utilisateur=0
+        self.nom_utilisateur=""
+        self.prenom_utilisateur=""
+        self.adresse_email=""
+        self.num_telephone=""
+        self.password=""
+        self.id_image=0
+    }
     
-    public static func getBDUtilisateurByID(id:id) -> Utilisateur{
+    /*public static func getBDUtilisateurByID(id:id) -> Utilisateur{
         SQLRequest<Utilisateur> req = new SQLRequest<>(Utilisateur.class)
         req.prepare("SELECT * FROM UTILISATEUR WHERE ID_UTILISATEUR = ?")
         req.addParametres(new String[]{String.valueOf(id)})
@@ -147,7 +155,7 @@ public class Utilisateur{
         req.prepare("UPDATE UTILISATEUR SET NOM_UTILISATEUR = ?, PRENOM_UTILISATEUR=?, ADRESSE_EMAIL = ?,NUM_TELEPHONE=?, PASSWORD=? WHERE ID_UTILISATEUR=?")
         req.addParametres(new String[]{self.nom_utilisateur, self.prenom_utilisateur,self.adresse_email,self.num_telephone,self.password,String.valueOf(self.id_utilisateur)})
         req.executerNoResult()
-    }
+    }*/
     
     public func setId_utilisateur(id_utilisateur:Int)  -> Void{
         self.id_utilisateur = id_utilisateur
