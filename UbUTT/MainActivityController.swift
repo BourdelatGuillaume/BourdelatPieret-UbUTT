@@ -13,7 +13,7 @@ class MainActivityController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let bd:BDConnection = BDConnection()
-        print(bd.execute(page:"https://appliweb.000webhostapp.com/if26/SQLMultipleResult.php",requete: "SELECT * FROM UTILISATEUR",parametres:""))
+        bd.execute(page:"https://appliweb.000webhostapp.com/if26/SQLMultipleResult.php",requete: "SELECT * FROM UTILISATEUR",parametres:"")
         // Do any additional setup after loading the view.
     }
     
