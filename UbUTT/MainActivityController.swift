@@ -12,9 +12,22 @@ class MainActivityController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let bd:BDConnection = BDConnection()
-        bd.execute(page:"https://appliweb.000webhostapp.com/if26/SQLMultipleResult.php",requete: "SELECT * FROM UTILISATEUR",parametres:"")
-        // Do any additional setup after loading the view.
+        let req:SQLRequest<Utilisateur> = SQLRequest()
+        req.prepare(requete: "SELECT * FROM UTILISATEUR")
+        let utils:Array<Utilisateur> = req.executerMultipleResult()
+        
+        let req2:SQLRequest = SQLRequest()
+        req2.prepare(requete: "UPDATE UTILISATEUR SET PRENOM_UTILISATEUR=? WHERE ID_UTILISATEUR=?")
+        req2.addParametres(parametre: ["Erwan","1"])
+        req2.executerNoResult()
+        
+        let req3:SQLRequest<Utilisateur> = SQLRequest()
+        req3.prepare(requete: "SELECT * FROM UTILISATEUR WHERE ID_UTILISATEUR=?")
+        req3.addParametres(parametre: ["1"])
+        let util:Utilisateur? = req3.executerOneResult()
+        if(util != nil){
+            print(util!.getPrenom_utilisateur())
+        }
     }
     
 

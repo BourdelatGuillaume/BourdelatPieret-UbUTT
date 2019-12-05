@@ -11,7 +11,7 @@ import Foundation
 /**
  * Classe représentant un utilisateur de l'application
  */
-public class Utilisateur{
+public class Utilisateur : Entity{
     
     private var id_utilisateur:Int
     private var nom_utilisateur:String
@@ -23,9 +23,9 @@ public class Utilisateur{
     
     private var conducteur:Conducteur?
     private var image:Image?
-    private var courses:Array<Course>?
+    private var courses:Array<Course>
  
-    init(){
+    required init(){
         self.id_utilisateur=0
         self.nom_utilisateur=""
         self.prenom_utilisateur=""
@@ -33,32 +33,46 @@ public class Utilisateur{
         self.num_telephone=""
         self.password=""
         self.id_image=0
+        self.courses=Array()
+        super.init()
     }
     
-    /*public static func getBDUtilisateurByID(id:id) -> Utilisateur{
-        SQLRequest<Utilisateur> req = new SQLRequest<>(Utilisateur.class)
-        req.prepare("SELECT * FROM UTILISATEUR WHERE ID_UTILISATEUR = ?")
-        req.addParametres(new String[]{String.valueOf(id)})
+    required init( dictionary: [String : Any]){
+        self.id_utilisateur=dictionary["id_utilisateur"] as? Int ?? 0
+        self.nom_utilisateur=dictionary["nom_utilisateur"] as? String ?? ""
+        self.prenom_utilisateur=dictionary["prenom_utilisateur"] as? String ?? ""
+        self.adresse_email=dictionary["adresse_email"] as? String ?? ""
+        self.num_telephone=dictionary["num_telephone"] as? String ?? ""
+        self.password=dictionary["password"] as? String ?? ""
+        self.id_image=dictionary["id_image"] as? Int ?? 0
+        self.courses=Array()
+        super.init(dictionary: dictionary)
+    }
+    
+    public static func getBDUtilisateurByID(id:Int) -> Utilisateur?{
+        let req:SQLRequest<Utilisateur> = SQLRequest()
+        req.prepare(requete:"SELECT * FROM UTILISATEUR WHERE ID_UTILISATEUR = ?")
+        req.addParametres(parametre:[String(id)])
         return req.executerOneResult()
     }
     
     private func getBDImage() -> Void{
-        SQLRequest<Image> req = new SQLRequest<>(Image.class)
-        req.prepare("SELECT * FROM IMAGE WHERE ID_IMAGE = ?")
-        req.addParametres(new String[]{String.valueOf(self.id_image)})
+        let req:SQLRequest<Image> = SQLRequest()
+        req.prepare(requete:"SELECT * FROM IMAGE WHERE ID_IMAGE = ?")
+        req.addParametres(parametre:[String(self.id_image)])
         self.image = req.executerOneResult()
     }
     
-    public func getImage() -> Void{ //Image
-        if(self.image == NSNull){
+    public func getImage() -> Image?{
+        if(self.image == nil){
             getBDImage()
         }
-        //return self.image
+        return self.image
     }
     
     
-    public func getConducteur() -> Conducteur{
-        if(self.conducteur == NSNull){
+    public func getConducteur() -> Conducteur?{
+        if(self.conducteur == nil){
             self.conducteur = Conducteur.getBDConducteurByIDUtilisateur(id:self.id_utilisateur)
         }
         return self.conducteur
@@ -68,50 +82,49 @@ public class Utilisateur{
         self.conducteur = conducteur
     }
     
-    public func getCourses() -> Void{ //ArrayList<Course>
-        /*if(self.courses==null){
-            self.courses = new ArrayList<>()
-            SQLRequest<Course> req= new SQLRequest<>(Course.class)
-            req.prepare("SELECT * FROM COURSE WHERE ID_PASSAGER = ?")
-            req.addParametres(new String[]{String.valueOf(self.id_utilisateur)})
+    public func getCourses() -> Array<Course>{
+        if(self.courses.count<1){
+            let req:SQLRequest<Course> = SQLRequest()
+            req.prepare(requete:"SELECT * FROM COURSE WHERE ID_PASSAGER = ?")
+            req.addParametres(parametre:[String(self.id_utilisateur)])
             self.courses = req.executerMultipleResult()
-        }*/
-        //return self.courses
+        }
+        return self.courses
     }
     
     public func getNoteUtilisateur() -> Double{
-        ArrayList<Course> courses = self.getCourses()
-        double res = 5.0
-        for (Course c: courses) {
-            if(c.getNote_passager()!=-1) {
-                res += c.getNote_passager()
+        var courses:Array<Course>  = self.getCourses()
+        var res:Double = 5.0
+        for c in courses {
+            if(c.getNote_passager() != -1) {
+                res += Double(c.getNote_passager())
             }
         }
-        res/=courses.size()+1
+        res /= Double(courses.count+1)
         return res
     }
     
-    public func getCourseActive() -> Course{
-        SQLRequest<Course> req= new SQLRequest<>(Course.class)
-        req.prepare("SELECT * FROM COURSE WHERE ID_PASSAGER = ? AND ID_STATUT <> 5")
-        req.addParametres(new String[]{String.valueOf(self.id_utilisateur)})
-        Course course = req.executerOneResult()
-        if(course==null && self.getConducteur()!=null){
-            req.prepare("SELECT * FROM COURSE WHERE ID_CONDUCTEUR = ? AND ID_STATUT <> 5")
-            req.addParametres(new String[]{String.valueOf(self.getConducteur().getId_conducteur())})
+    public func getCourseActive() -> Course?{
+        let req:SQLRequest<Course> = SQLRequest()
+        req.prepare(requete: "SELECT * FROM COURSE WHERE ID_PASSAGER = ? AND ID_STATUT <> 5")
+        req.addParametres(parametre: [String(self.id_utilisateur)])
+        var course:Course? = req.executerOneResult()
+        if(course==nil && self.getConducteur() != nil){
+            req.prepare(requete: "SELECT * FROM COURSE WHERE ID_CONDUCTEUR = ? AND ID_STATUT <> 5")
+            req.addParametres(parametre: [String(self.getConducteur()!.getId_conducteur())])
             course = req.executerOneResult()
         }
         return course
     }
     
     public func updateUtilisateur() -> Void{
-        SQLRequest req = new SQLRequest()
-        req.prepare("UPDATE UTILISATEUR SET NOM_UTILISATEUR = ?, PRENOM_UTILISATEUR= ? WHERE ID_UTILISATEUR=?")
-        req.addParametres(new String[]{self.nom_utilisateur,self.prenom_utilisateur,String.valueOf(self.id_utilisateur)})
+        let req:SQLRequest  = SQLRequest()
+        req.prepare(requete: "UPDATE UTILISATEUR SET NOM_UTILISATEUR = ?, PRENOM_UTILISATEUR= ? WHERE ID_UTILISATEUR=?")
+        req.addParametres(parametre:[self.nom_utilisateur,self.prenom_utilisateur,String(self.id_utilisateur)])
         req.executerNoResult()
     }
     
-    public func updateEmail(context:Context) -> Bool{
+    /*public func updateEmail(context:Context) -> Bool{
         UtilisateurConnection uc = new UtilisateurConnection(context)
         if(!uc.alreadyExistEmail(self.adresse_email)) {
             SQLRequest req = new SQLRequest()
@@ -122,9 +135,9 @@ public class Utilisateur{
         } else {
             return false
         }
-    }
+    }*/
     
-    public func updateTel(context:Context) -> Bool{
+    /*public func updateTel(context:Context) -> Bool{
         UtilisateurConnection uc = new UtilisateurConnection(context)
         if(!uc.alreadyExistTel(self.num_telephone)) {
             SQLRequest req = new SQLRequest()
@@ -136,26 +149,26 @@ public class Utilisateur{
         } else {
             return false
         }
-    }
+    }*/
     
-    public func updatePassword(Context context) -> Vod{
+    /*public func updatePassword(Context context) -> Void{
         UtilisateurConnection uc = new UtilisateurConnection(context)
         SQLRequest req = new SQLRequest()
         req.prepare("UPDATE UTILISATEUR SET PASSWORD = ? WHERE ID_UTILISATEUR=?")
         req.addParametres(new String[]{self.password, String.valueOf(self.id_utilisateur)})
         req.executerNoResult()
         uc.updatePasswordSQLite(self.password,self.id_utilisateur)
-    }
+    }*/
     
     /*
      Update user without checking the data
      */
     public func update() -> Void{
-        SQLRequest req = new SQLRequest()
-        req.prepare("UPDATE UTILISATEUR SET NOM_UTILISATEUR = ?, PRENOM_UTILISATEUR=?, ADRESSE_EMAIL = ?,NUM_TELEPHONE=?, PASSWORD=? WHERE ID_UTILISATEUR=?")
-        req.addParametres(new String[]{self.nom_utilisateur, self.prenom_utilisateur,self.adresse_email,self.num_telephone,self.password,String.valueOf(self.id_utilisateur)})
+        let req:SQLRequest = SQLRequest()
+        req.prepare(requete:"UPDATE UTILISATEUR SET NOM_UTILISATEUR = ?, PRENOM_UTILISATEUR=?, ADRESSE_EMAIL = ?,NUM_TELEPHONE=?, PASSWORD=? WHERE ID_UTILISATEUR=?")
+        req.addParametres(parametre:[self.nom_utilisateur, self.prenom_utilisateur,self.adresse_email,self.num_telephone,self.password,String(self.id_utilisateur)])
         req.executerNoResult()
-    }*/
+    }
     
     public func setId_utilisateur(id_utilisateur:Int)  -> Void{
         self.id_utilisateur = id_utilisateur

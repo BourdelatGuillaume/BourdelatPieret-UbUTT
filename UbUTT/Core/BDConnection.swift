@@ -11,15 +11,13 @@ import CommonCrypto
 
 public class BDConnection{
     
-    private var res:Any?
-    
-    private func connexionPage(page:String, requete:String, parametres:String){
+    private func connexionPage(page:String, requete:String, parametres:String) -> Data?{
         let now = Date()
         let format = DateFormatter() 
         format.dateFormat = "dd-MM-yyyy"
         var mdp:String = sha512(string:"GE"+format.string(from:now)+"IF26"+requete+parametres)
         //let params="requete="+requete+"&mdp="+mdp
-        let params = ["requete":requete,"mdp":mdp]
+        let params = ["requete":requete,"mdp":mdp,"parametre":parametres]
         
         var request = URLRequest(url: URL(string: page)!)
         request.httpMethod = "POST"
@@ -28,21 +26,24 @@ public class BDConnection{
         //request.httpBody = params.data(using: String.Encoding.utf8)
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
-        
+        var res:Data?
+        let sem = DispatchSemaphore(value: 0)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
+            defer { sem.signal() }
             //print(response!)
             let httpResponse = response as! HTTPURLResponse
             print("response code = \(httpResponse.statusCode)")
-            let dataRes:Data? = "[{\"id_utilisateur\": \"1\",\"nom_utilisateur\": \"Bob\",\"prenom_utilisateur\": \"Erwan\",\"adresse_email\": \"bob.erwan@gmail.com\",\"num_telephone\": \"+33606407808\",\"password\": \"test1234\",\"id_image\": \"0\"}]".data(using: .utf8)
-
+            //let dataRes:Data? = "[{\"id_utilisateur\": \"1\",\"nom_utilisateur\": \"Bob\",\"prenom_utilisateur\": \"Erwan\",\"adresse_email\": \"bob.erwan@gmail.com\",\"num_telephone\": \"+33606407808\",\"password\": \"test1234\",\"id_image\": \"0\"}]".data(using: .utf8)
+            
+            //print(String(decoding:data!,as:UTF8.self))
             
             guard error == nil else {
                 print(error!)
                 return
             }
             
-            guard let json = dataRes else {
+            guard let json = data else {
                 print("No data")
                 return
             }
@@ -51,26 +52,18 @@ public class BDConnection{
                 print("Zero bytes of data")
                 return
             }
+            
+            res = json
             //print(String(decoding: json, as: UTF8.self))
-            do {
-                guard let jsonObject = try JSONSerialization.jsonObject(with: json, options: [])
-                    as? [[String: Any]] else {
-                        print("noJSON")
-                        return
-                }
-                
-            } catch  {
-                print("error trying to convert data to JSON")
-                return
-            }
         }
         
         task.resume()
+        sem.wait(timeout:DispatchTime.distantFuture)
+        return res
     }
     
-    public func execute(page:String,requete:String, parametres:String)->Any{
-        self.connexionPage(page: page, requete: requete, parametres: parametres)
-        return self.res
+    public func execute(page:String,requete:String, parametres:String)->Data?{
+        return self.connexionPage(page: page, requete: requete, parametres: parametres)
     }
     
     func sha512(string: String) -> String {
