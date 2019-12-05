@@ -12,6 +12,7 @@ import GoogleMaps
 class HomeActivityController : UIViewController, UIApplicationDelegate {
     
     @IBOutlet weak var map: GMSMapView!
+    @IBOutlet weak var newCourseBtn: UIButton!
     
     private let locationManager = CLLocationManager()
     
@@ -19,13 +20,21 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
+        newCourseBtn.layer.cornerRadius = 4
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        locationManager.delegate = self
         if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways){
             locationManager.startUpdatingLocation()
         }else{
             locationManager.requestWhenInUseAuthorization()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        locationManager.stopUpdatingLocation()
     }
     
     /* -------------------------------------------------------------------------------------- */
