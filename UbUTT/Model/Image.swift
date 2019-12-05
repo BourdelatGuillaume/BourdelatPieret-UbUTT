@@ -11,14 +11,21 @@ import Foundation
 /**
  * Classe contenant l'url d'une image
  */
-public class Image { //extends AsyncTask<Void, Void, Bitmap>
+public class Image:Entity { //extends AsyncTask<Void, Void, Bitmap>
     private var id_image:Int
     private var image_url:String
     //private var image_bitmap:Bitmap
     
-    init(){
+    required init(){
         self.id_image=0
         self.image_url=""
+        super.init()
+    }
+    
+    required init( dictionary: [String : Any]){
+        self.id_image=dictionary["id_image"] as? Int ?? 0
+        self.image_url=dictionary["image_url"] as? String ?? ""
+        super.init(dictionary: dictionary)
     }
     
     /*@Override

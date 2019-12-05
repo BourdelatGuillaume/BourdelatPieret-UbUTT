@@ -11,71 +11,82 @@ import Foundation
 /**
  * Classe qui définit un conducteur
  */
-public class Conducteur {
+public class Conducteur:Entity {
     private var id_conducteur:Int
     private var id_utilisateur:Int
     private var modele_voiture:String
     private var plaque_immatriculation:String
-    private var courses:Array<Course>?
+    private var courses:Array<Course>
     private var utilisateur:Utilisateur?
     
-    init(){
+    required init(){
         self.id_conducteur=0
         self.id_utilisateur=0
         self.modele_voiture=""
         self.plaque_immatriculation=""
+        self.courses=Array()
+        super.init()
     }
-    /*
-    public static func getBDConducteurByIDUtilisateur(id:Int) -> Conducteur{
-        SQLRequest<Conducteur> req= new SQLRequest<>(Conducteur.class)
-        req.prepare("SELECT * FROM CONDUCTEUR WHERE ID_UTILISATEUR = ?")
-        req.addParametres(new String[]{String.valueOf(id)})
+    
+    required init( dictionary: [String : Any]){
+        self.id_conducteur=dictionary["id_conducteur"] as? Int ?? 0
+        self.id_utilisateur=dictionary["id_utilisateur"] as? Int ?? 0
+        self.modele_voiture=dictionary["modele_voiture"] as? String ?? ""
+        self.plaque_immatriculation=dictionary["plaque_immatriculation"] as? String ?? ""
+        self.courses=Array()
+        super.init(dictionary: dictionary)
+    }
+    
+    
+    public static func getBDConducteurByIDUtilisateur(id:Int) -> Conducteur?{
+        let req:SQLRequest<Conducteur> = SQLRequest()
+        req.prepare(requete:"SELECT * FROM CONDUCTEUR WHERE ID_UTILISATEUR = ?")
+        req.addParametres(parametre: [String(id)])
         return req.executerOneResult()
     }
     
     public func update() -> Void{
-        SQLRequest req= new SQLRequest()
-        req.prepare("UPDATE CONDUCTEUR SET MODELE_VOITURE = ?, PLAQUE_IMMATRICULATION= ? WHERE ID_UTILISATEUR=?")
-        req.addParametres(new String[]{self.modele_voiture,self.plaque_immatriculation,String.valueOf(self.id_utilisateur)})
+        let req:SQLRequest =  SQLRequest()
+        req.prepare(requete:"UPDATE CONDUCTEUR SET MODELE_VOITURE = ?, PLAQUE_IMMATRICULATION= ? WHERE ID_UTILISATEUR=?")
+        req.addParametres(parametre: [self.modele_voiture,self.plaque_immatriculation,String(self.id_utilisateur)])
         req.executerNoResult()
     }
     
     public func getCourses() -> Array<Course>{
-        if(self.courses==null){
-            self.courses = new ArrayList<>()
-            SQLRequest<Course> req= new SQLRequest<>(Course.class)
-            req.prepare("SELECT * FROM COURSE WHERE ID_CONDUCTEUR = ?")
-            req.addParametres(new String[]{String.valueOf(self.id_conducteur)})
+        if(self.courses.count<1){
+            let req:SQLRequest<Course> =  SQLRequest()
+            req.prepare(requete:"SELECT * FROM COURSE WHERE ID_CONDUCTEUR = ?")
+            req.addParametres(parametre: [String(self.id_conducteur)])
             self.courses = req.executerMultipleResult()
         }
         return self.courses
     }
     
     public func getNoteConducteur() -> Double{
-        ArrayList<Course> courses = self.getCourses()
-        double res = 5.0
-        for (Course c: courses) {
-            if(c.getNote_conducteur()!=-1) {
-                res += c.getNote_conducteur()
+        let courses:Array<Course> = self.getCourses()
+        var res:Double = 5.0
+        for c in courses {
+            if(c.getNote_conducteur() != -1) {
+                res += Double(c.getNote_conducteur())
             }
         }
-        res/=courses.size()+1
+        res /= Double(courses.count+1)
         return res
     }
     
-    public func getUtilisateur() -> Utilisateur{
-        if(self.utilisateur==null){
-            self.utilisateur = Utilisateur.getBDUtilisateurByID(self.id_utilisateur)
+    public func getUtilisateur() -> Utilisateur?{
+        if(self.utilisateur==nil){
+            self.utilisateur = Utilisateur.getBDUtilisateurByID(id:self.id_utilisateur)
         }
         return self.utilisateur
     }
     
-    public static func getBDConducteurByID(id:Int) -> Conducteur{
-        SQLRequest<Conducteur> req= new SQLRequest<>(Conducteur.class)
-        req.prepare("SELECT * FROM CONDUCTEUR WHERE ID_CONDUCTEUR = ?")
-        req.addParametres(new String[]{String.valueOf(id)})
+    public static func getBDConducteurByID(id:Int) -> Conducteur?{
+        let req:SQLRequest<Conducteur> =  SQLRequest()
+        req.prepare(requete:"SELECT * FROM CONDUCTEUR WHERE ID_CONDUCTEUR = ?")
+        req.addParametres(parametre: [String(id)])
         return req.executerOneResult()
-    }*/
+    }
     
     public func getId_conducteur() -> Int{
         return id_conducteur

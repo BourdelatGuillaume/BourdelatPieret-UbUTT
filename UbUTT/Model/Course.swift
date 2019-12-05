@@ -11,7 +11,7 @@ import Foundation
 /**
  * Classe définissant une course entre un point A et un point B
  */
-public class Course{
+public class Course:Entity{
     
     private var id_course:Int
     private var id_conducteur:Int
@@ -30,7 +30,7 @@ public class Course{
     private var conducteur:Conducteur?
     private var statut:Statut?
     
-    init(){
+    required init(){
         self.id_course=0
         self.id_conducteur=0
         self.id_passager=0
@@ -44,70 +44,90 @@ public class Course{
         self.prix_estime=0.0
         self.note_conducteur = -1
         self.note_passager = -1
+        super.init()
     }
-    /*
-    public func getPassager() -> Utilisateur{
-        if(self.passager is NSNull){
-            self.passager = Utilisateur.getBDUtilisateurByID(self.id_passager)
+    
+    required init( dictionary: [String : Any]){
+        self.id_course=dictionary["id_course"] as? Int ?? 0
+        self.id_conducteur=dictionary["id_conducteur"] as? Int ?? 0
+        self.id_passager=dictionary["id_passager"] as? Int ?? 0
+        self.id_statut=dictionary["id_statut"] as? Int ?? 0
+        self.date=dictionary["date"] as? String ?? ""
+        self.position_conducteur=dictionary["position_conducteur"] as? String ?? ""
+        self.point_depart=dictionary["point_depart"] as? String ?? ""
+        self.point_arrivee=dictionary["point_arrivee"] as? String ?? ""
+        self.heure_depart=dictionary["heure_depart"] as? String ?? ""
+        self.heure_arrivee=dictionary["heure_arrivee"] as? String ?? ""
+        self.prix_estime=dictionary["prix_estime"] as? Double ?? 0.0
+        self.note_conducteur = dictionary["note_conducteur"] as? Int ?? -1
+        self.note_passager = dictionary["note_passager"] as? Int ?? -1
+        super.init(dictionary: dictionary)
+    }
+    
+    
+    public func getPassager() -> Utilisateur?{
+        if(self.passager == nil){
+            self.passager = Utilisateur.getBDUtilisateurByID(id:self.id_passager)
         }
         return self.passager
     }
     
-    public func getConducteur() -> Conducteur{
-        if(self.conducteur == NSNull){
-            self.conducteur = Conducteur.getBDConducteurByID(self.id_conducteur)
+    public func getConducteur() -> Conducteur?{
+        if(self.conducteur == nil){
+            self.conducteur = Conducteur.getBDConducteurByID(id:self.id_conducteur)
         }
         return self.conducteur
     }
     
-    public func getStatut() -> Statut{
-        if(self.statut == NSNull){
-            self.statut = Statut.getBDStatutByID(self.id_statut)
+    public func getStatut() -> Statut?{
+        if(self.statut == nil){
+            self.statut = Statut.getBDStatutByID(id:self.id_statut)
         }
         return self.statut
     }
     
-    public static func createInBD(id_utilisateur:Int, depart_lat:Double, depart_lng:Double, arrivee_lat:Double, arrivee_lng:Double, distance:Double) -> Course{
-        String date = new SimpleDateFormat("yyyy-mm-dd", Locale.getDefault()).format(Calendar.getInstance().getTime())
-        SQLRequest req= new SQLRequest()
-        req.prepare("INSERT INTO COURSE(ID_PASSAGER, DATE, POINT_DEPART, POINT_ARRIVEE, PRIX_ESTIME) " +
-            "VALUES(?,?,?,?,?)")
-        req.addParametres(new String[]{String.valueOf(id_utilisateur),date,depart_lat+","+depart_lng,arrivee_lat+","+arrivee_lng, String.valueOf(0.1*distance)})
-        SQLRequest<Course> reqID= new SQLRequest(Course.class)
-        reqID.prepare("SELECT * FROM COURSE WHERE ID_PASSAGER, DATE, POINT_DEPART, POINT_ARRIVEE) " +
-            "VALUES(?,?,?,?)")
-        reqID.addParametres(new String[]{String.valueOf(id_utilisateur),date,depart_lat+","+depart_lng,arrivee_lat+","+arrivee_lng})
+    public static func createInBD(id_utilisateur:Int, depart_lat:Double, depart_lng:Double, arrivee_lat:Double, arrivee_lng:Double, distance:Double) -> Course?{
+        let now = Date()
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd"
+        let date:String = format.string(from:now)
+        let req:SQLRequest = SQLRequest()
+        req.prepare(requete:"INSERT INTO COURSE(ID_PASSAGER, DATE, POINT_DEPART, POINT_ARRIVEE, PRIX_ESTIME) VALUES(?,?,?,?,?)")
+        req.addParametres(parametre: [String(id_utilisateur),date,depart_lat+","+depart_lng,arrivee_lat+","+arrivee_lng, String(0.1*distance)])
+        let reqID:SQLRequest<Course> = SQLRequest()
+        reqID.prepare(requete:"SELECT * FROM COURSE WHERE ID_PASSAGER, DATE, POINT_DEPART, POINT_ARRIVEE) VALUES(?,?,?,?)")
+        reqID.addParametres(parametre: [String(id_utilisateur),date,depart_lat+","+depart_lng,arrivee_lat+","+arrivee_lng])
         return reqID.executerOneResult()
     }
     
     
-    public static func getBDCourseByID(int id) -> Course{
-        SQLRequest<Course> req= new SQLRequest<>(Course.class)
-        req.prepare("SELECT * FROM COURSE WHERE ID_COURSE= ?")
-        req.addParametres(new String[]{String.valueOf(id)})
+    public static func getBDCourseByID(id:Int) -> Course?{
+        let req:SQLRequest<Course> = SQLRequest<>()
+        req.prepare(requete:"SELECT * FROM COURSE WHERE ID_COURSE= ?")
+        req.addParametres(parametre:[String(id)])
         return req.executerOneResult()
     }
     
     public func updateNotePassager() -> Void{
-        SQLRequest req= new SQLRequest()
-        req.prepare("UPDATE COURSE SET NOTE_PASSAGER = ? WHERE ID_COURSE=?")
-        req.addParametres(new String[]{String.valueOf(self.note_passager),String.valueOf(self.id_course)})
+        let req:SQLRequest = SQLRequest()
+        req.prepare(requete: "UPDATE COURSE SET NOTE_PASSAGER = ? WHERE ID_COURSE=?")
+        req.addParametres(parametre:[String(self.note_passager),String(self.id_course)])
         req.executerNoResult()
     }
     
     public func updateNoteConducteur()-> Void{
-        SQLRequest req= new SQLRequest()
-        req.prepare("UPDATE COURSE SET NOTE_CONDUCTEUR = ? WHERE ID_COURSE=?")
-        req.addParametres(new String[]{String.valueOf(self.note_conducteur),String.valueOf(self.id_course)})
+        let req:SQLRequest = SQLRequest()
+        req.prepare(requete:"UPDATE COURSE SET NOTE_CONDUCTEUR = ? WHERE ID_COURSE=?")
+        req.addParametres(parametre:[String(self.note_conducteur),String(self.id_course)])
         req.executerNoResult()
     }
     
     public func updateStatut()-> Void{
-        SQLRequest req= new SQLRequest()
-        req.prepare("UPDATE COURSE SET ID_STATUT = ? WHERE ID_COURSE=?")
-        req.addParametres(new String[]{String.valueOf(self.id_statut),String.valueOf(self.id_course)})
+        let req:SQLRequest = SQLRequest()
+        req.prepare(requete:"UPDATE COURSE SET ID_STATUT = ? WHERE ID_COURSE=?")
+        req.addParametres(parametre:[String(self.id_statut),String(self.id_course)])
         req.executerNoResult()
-    }*/
+    }
     
     public func getId_course() -> Int{
         return id_course

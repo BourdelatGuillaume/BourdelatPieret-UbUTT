@@ -11,22 +11,29 @@ import Foundation
 /**Classe représentant un statut de course
  *
  */
-public class Statut {
+public class Statut:Entity {
     private var id_statut:Int
     private var statut:String
     
-    init(){
+    required init(){
         self.id_statut=0
         self.statut=""
+        super.init()
     }
     
-    /*
-    public static func getBDStatutByID(id:Int) -> Statut{
-        SQLRequest<Statut> req = new SQLRequest<>(Statut.class)
-        req.prepare("SELECT * FROM STATUT WHERE ID_STATUT= ?")
-        req.addParametres(new String[]{String.valueOf(id)})
+    required init( dictionary: [String : Any]){
+        self.id_statut=dictionary["id_statut"] as? Int ?? 0
+        self.statut=dictionary["statut"] as? String ?? ""
+        super.init(dictionary: dictionary)
+    }
+    
+    
+    public static func getBDStatutByID(id:Int) -> Statut?{
+        let req:SQLRequest<Statut> = SQLRequest()
+        req.prepare(requete:"SELECT * FROM STATUT WHERE ID_STATUT= ?")
+        req.addParametres(parametre: [String(id)])
         return req.executerOneResult()
-    }*/
+    }
     
     public func getId_statut() -> Int{
         return id_statut
