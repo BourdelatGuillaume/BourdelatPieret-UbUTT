@@ -10,36 +10,61 @@ import UIKit
 
 class MainActivityController: UIViewController {
     
+    var utilisateurConnection:UtilisateurConnection?
+    var user:Utilisateur?
+    
+    @IBOutlet weak var num_tel: UITextField!
+    @IBOutlet weak var password: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let req:SQLRequest<Utilisateur> = SQLRequest()
-        req.prepare(requete: "SELECT * FROM UTILISATEUR")
-        let utils:Array<Utilisateur> = req.executerMultipleResult()
-        
-        let req2:SQLRequest = SQLRequest()
-        req2.prepare(requete: "UPDATE UTILISATEUR SET PRENOM_UTILISATEUR=? WHERE ID_UTILISATEUR=?")
-        req2.addParametres(parametre: ["Erwan","1"])
-        req2.executerNoResult()
-        
-        let req3:SQLRequest<Utilisateur> = SQLRequest()
-        req3.prepare(requete: "SELECT * FROM UTILISATEUR WHERE ID_UTILISATEUR=?")
-        req3.addParametres(parametre: ["1"])
-        let util:Utilisateur? = req3.executerOneResult()
-        if(util != nil){
-            print(util!.getPrenom_utilisateur())
+        utilisateurConnection = UtilisateurConnection()
+        if(utilisateurConnection!.isConnected()){
+            let utilisateur:Utilisateur? = utilisateurConnection!.getUtilisateurConnecte()
+            if(utilisateur != nil) {
+                self.signIn(user:utilisateur!)
+            }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
-    /* prepareForSegue() -> https://learnappmaking.com/pass-data-between-view-controllers-swift-how-to/ */
+    @IBAction func onClickConnection(_ sender: UIButton) {
+        if(num_tel.text!.count<10){
+            num_tel.backgroundColor = UIColor.init(red: 231, green: 48, blue: 48, alpha: 1)
+        } else {
+            num_tel.backgroundColor = UIColor.white
+        }
+        if(password.text!.count<6){
+            password.backgroundColor = UIColor.init(red: 231, green: 48, blue: 48, alpha: 1)
+        } else {
+            password.backgroundColor = UIColor.white
+        }
+        if(num_tel.text!.count >= 10 && password.text!.count >= 6) {
+            let utilisateur:Utilisateur? = utilisateurConnection!.connection(num_telephone: num_tel.text!,password:password.text!);
+            if (utilisateur != nil) {
+                self.signIn(user: utilisateur!);
+            }
+        }
+    }
+    
+    @IBAction func onClickRegister(_ sender: UIButton) {
+        //Intent registerActivity = new Intent(this, RegisterActivity.class);
+        //startActivity(registerActivity);
+    }
+    
+    private func signIn(user:Utilisateur){
+        self.user = user
+        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "segueHomeActivity", sender: nil)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is HomeActivityController
+        {
+            let vc = segue.destination as? HomeActivityController
+            vc?.user = self.user
+        }
+    }
 
 }

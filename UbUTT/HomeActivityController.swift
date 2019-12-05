@@ -17,6 +17,8 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
     
     private var location:CLLocationCoordinate2D!
     
+    var user:Utilisateur?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self

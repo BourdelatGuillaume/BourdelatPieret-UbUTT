@@ -93,16 +93,16 @@ public class Course:Entity{
         let date:String = format.string(from:now)
         let req:SQLRequest = SQLRequest()
         req.prepare(requete:"INSERT INTO COURSE(ID_PASSAGER, DATE, POINT_DEPART, POINT_ARRIVEE, PRIX_ESTIME) VALUES(?,?,?,?,?)")
-        req.addParametres(parametre: [String(id_utilisateur),date,depart_lat+","+depart_lng,arrivee_lat+","+arrivee_lng, String(0.1*distance)])
+        req.addParametres(parametre: [String(id_utilisateur),date,"\(depart_lat),\(depart_lng)","\(arrivee_lat),\(arrivee_lng)", String(0.1*distance)])
         let reqID:SQLRequest<Course> = SQLRequest()
         reqID.prepare(requete:"SELECT * FROM COURSE WHERE ID_PASSAGER, DATE, POINT_DEPART, POINT_ARRIVEE) VALUES(?,?,?,?)")
-        reqID.addParametres(parametre: [String(id_utilisateur),date,depart_lat+","+depart_lng,arrivee_lat+","+arrivee_lng])
+        reqID.addParametres(parametre: [String(id_utilisateur),date,"\(depart_lat),\(depart_lng)","\(arrivee_lat),\(arrivee_lng)"])
         return reqID.executerOneResult()
     }
     
     
     public static func getBDCourseByID(id:Int) -> Course?{
-        let req:SQLRequest<Course> = SQLRequest<>()
+        let req:SQLRequest<Course> = SQLRequest()
         req.prepare(requete:"SELECT * FROM COURSE WHERE ID_COURSE= ?")
         req.addParametres(parametre:[String(id)])
         return req.executerOneResult()

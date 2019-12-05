@@ -15,7 +15,7 @@ public class BDConnection{
         let now = Date()
         let format = DateFormatter() 
         format.dateFormat = "dd-MM-yyyy"
-        var mdp:String = sha512(string:"GE"+format.string(from:now)+"IF26"+requete+parametres)
+        var mdp:String = BDConnection.sha512(string:"GE"+format.string(from:now)+"IF26"+requete+parametres)
         //let params="requete="+requete+"&mdp="+mdp
         let params = ["requete":requete,"mdp":mdp,"parametre":parametres]
         
@@ -66,7 +66,7 @@ public class BDConnection{
         return self.connexionPage(page: page, requete: requete, parametres: parametres)
     }
     
-    func sha512(string: String) -> String {
+    public static func sha512(string: String) -> String {
         var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
         if let data = string.data(using: String.Encoding.utf8) {
             data.withUnsafeBytes {

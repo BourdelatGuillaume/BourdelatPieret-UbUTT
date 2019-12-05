@@ -34,6 +34,8 @@
 		898C1214238D1EC700B187AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898C1212238D1EC700B187AC /* LaunchScreen.storyboard */; };
 		8F1386252398F3B1002E65C3 /* SQLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1386242398F3B1002E65C3 /* SQLRequest.swift */; };
 		8F1386272398F92F002E65C3 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1386262398F92F002E65C3 /* Entity.swift */; };
+		8F13862923990F53002E65C3 /* UtilisateurConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13862823990F53002E65C3 /* UtilisateurConnection.swift */; };
+		8F13862B239920DF002E65C3 /* RegisterControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13862A239920DF002E65C3 /* RegisterControllerViewController.swift */; };
 		8F3FAEC4238D4BC9004D93C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3FAEC3238D4BC9004D93C6 /* Constants.swift */; };
 		8F3FAEC6238D4D58004D93C6 /* Utilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3FAEC5238D4D58004D93C6 /* Utilisateur.swift */; };
 		8F3FAEC8238D4FC7004D93C6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3FAEC7238D4FC7004D93C6 /* Course.swift */; };
@@ -73,6 +75,8 @@
 		898C1215238D1EC700B187AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F1386242398F3B1002E65C3 /* SQLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLRequest.swift; sourceTree = "<group>"; };
 		8F1386262398F92F002E65C3 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		8F13862823990F53002E65C3 /* UtilisateurConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilisateurConnection.swift; sourceTree = "<group>"; };
+		8F13862A239920DF002E65C3 /* RegisterControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterControllerViewController.swift; sourceTree = "<group>"; };
 		8F3FAEC3238D4BC9004D93C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8F3FAEC5238D4D58004D93C6 /* Utilisateur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilisateur.swift; sourceTree = "<group>"; };
 		8F3FAEC7238D4FC7004D93C6 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				898C1215238D1EC700B187AC /* Info.plist */,
 				8F3FAECF238D56BA004D93C6 /* MainActivityController.swift */,
 				892B6BF42398ED5700C481C7 /* HomeActivityController.swift */,
+				8F13862A239920DF002E65C3 /* RegisterControllerViewController.swift */,
 			);
 			path = UbUTT;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				8F3FAEC3238D4BC9004D93C6 /* Constants.swift */,
 				89459676238FBB1500478C78 /* BDConnection.swift */,
 				8F1386242398F3B1002E65C3 /* SQLRequest.swift */,
+				8F13862823990F53002E65C3 /* UtilisateurConnection.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -270,11 +276,13 @@
 				8F1386252398F3B1002E65C3 /* SQLRequest.swift in Sources */,
 				898C120A238D1EB900B187AC /* AppDelegate.swift in Sources */,
 				8F3FAEC8238D4FC7004D93C6 /* Course.swift in Sources */,
+				8F13862B239920DF002E65C3 /* RegisterControllerViewController.swift in Sources */,
 				8F3FAEC4238D4BC9004D93C6 /* Constants.swift in Sources */,
 				8F3FAED0238D56BA004D93C6 /* MainActivityController.swift in Sources */,
 				8F1386272398F92F002E65C3 /* Entity.swift in Sources */,
 				8F3FAEC6238D4D58004D93C6 /* Utilisateur.swift in Sources */,
 				892B6BF52398ED5700C481C7 /* HomeActivityController.swift in Sources */,
+				8F13862923990F53002E65C3 /* UtilisateurConnection.swift in Sources */,
 				8F3FAECA238D50F3004D93C6 /* Conducteur.swift in Sources */,
 				89459677238FBB1500478C78 /* BDConnection.swift in Sources */,
 			);
