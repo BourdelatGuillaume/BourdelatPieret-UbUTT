@@ -38,13 +38,13 @@ public class Utilisateur : Entity{
     }
     
     required init( dictionary: [String : Any]){
-        self.id_utilisateur=dictionary["id_utilisateur"] as? Int ?? 0
+        self.id_utilisateur=Int(dictionary["id_utilisateur"] as? String ?? "0")!
         self.nom_utilisateur=dictionary["nom_utilisateur"] as? String ?? ""
         self.prenom_utilisateur=dictionary["prenom_utilisateur"] as? String ?? ""
         self.adresse_email=dictionary["adresse_email"] as? String ?? ""
         self.num_telephone=dictionary["num_telephone"] as? String ?? ""
         self.password=dictionary["password"] as? String ?? ""
-        self.id_image=dictionary["id_image"] as? Int ?? 0
+        self.id_image=Int(dictionary["id_image"] as? String ?? "0")!
         self.courses=Array()
         super.init(dictionary: dictionary)
     }

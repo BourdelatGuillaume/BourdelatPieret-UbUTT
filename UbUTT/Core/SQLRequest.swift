@@ -40,17 +40,19 @@ public class SQLRequest<E:Entity>{
     public func executerOneResult() -> E?{
         let bd:BDConnection = BDConnection()
         let data:Data? = bd.execute(page:self.OneResult, requete:self.requete!, parametres:arrayToString(liste:self.parametre))
-        do {
-         guard let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
-         as? [String: Any] else {
-            print("noJSON")
-            return nil
-         }
-            return E.init(dictionary: jsonObject)
-         } catch  {
-            print("error trying to convert data to JSON")
-            return nil
-         }
+        if(data != nil){
+            do {
+             guard let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
+             as? [String: Any] else {
+                print("noJSON")
+                return nil
+             }
+                return E.init(dictionary: jsonObject)
+             } catch  {
+                print("error trying to convert data to JSON")
+                return nil
+             }
+        }
         return nil
     }
     
@@ -58,19 +60,21 @@ public class SQLRequest<E:Entity>{
         let bd:BDConnection = BDConnection()
         var array:Array<E>=Array()
         let data:Data? = bd.execute(page:self.MultipleResult, requete:self.requete!, parametres:arrayToString(liste:self.parametre))
-        do {
-            guard let jsonObjects = try JSONSerialization.jsonObject(with: data!, options: [])
-                as? [[String: Any]] else {
-                    print("noJSON")
-                    return array
+        if(data != nil){
+            do {
+                guard let jsonObjects = try JSONSerialization.jsonObject(with: data!, options: [])
+                    as? [[String: Any]] else {
+                        print("noJSON")
+                        return array
+                }
+                for jsonObject in jsonObjects{
+                    array.append(E.init(dictionary: jsonObject))
+                }
+                return array
+            } catch  {
+                print("error trying to convert data to JSON")
+                return array
             }
-            for jsonObject in jsonObjects{
-                array.append(E.init(dictionary: jsonObject))
-            }
-            return array
-        } catch  {
-            print("error trying to convert data to JSON")
-            return array
         }
         return array
     }

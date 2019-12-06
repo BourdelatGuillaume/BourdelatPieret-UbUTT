@@ -19,6 +19,7 @@ class MainActivityController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         utilisateurConnection = UtilisateurConnection()
+        //utilisateurConnection!.disconnect()
         if(utilisateurConnection!.isConnected()){
             let utilisateur:Utilisateur? = utilisateurConnection!.getUtilisateurConnecte()
             if(utilisateur != nil) {

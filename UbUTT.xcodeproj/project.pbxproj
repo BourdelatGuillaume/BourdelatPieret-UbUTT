@@ -35,6 +35,7 @@
 		898C120F238D1EB900B187AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898C120D238D1EB900B187AC /* Main.storyboard */; };
 		898C1211238D1EC700B187AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898C1210238D1EC700B187AC /* Assets.xcassets */; };
 		898C1214238D1EC700B187AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898C1212238D1EC700B187AC /* LaunchScreen.storyboard */; };
+		8F0F35E2239A9D1C00072764 /* SQLiteConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F35E1239A9D1C00072764 /* SQLiteConnection.swift */; };
 		8F1386252398F3B1002E65C3 /* SQLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1386242398F3B1002E65C3 /* SQLRequest.swift */; };
 		8F1386272398F92F002E65C3 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1386262398F92F002E65C3 /* Entity.swift */; };
 		8F13862923990F53002E65C3 /* UtilisateurConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13862823990F53002E65C3 /* UtilisateurConnection.swift */; };
@@ -79,6 +80,7 @@
 		898C1210238D1EC700B187AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		898C1213238D1EC700B187AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		898C1215238D1EC700B187AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F0F35E1239A9D1C00072764 /* SQLiteConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteConnection.swift; sourceTree = "<group>"; };
 		8F1386242398F3B1002E65C3 /* SQLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLRequest.swift; sourceTree = "<group>"; };
 		8F1386262398F92F002E65C3 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		8F13862823990F53002E65C3 /* UtilisateurConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilisateurConnection.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				89459676238FBB1500478C78 /* BDConnection.swift */,
 				8F1386242398F3B1002E65C3 /* SQLRequest.swift */,
 				8F13862823990F53002E65C3 /* UtilisateurConnection.swift */,
+				8F0F35E1239A9D1C00072764 /* SQLiteConnection.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				8F3FAECC238D540C004D93C6 /* Statut.swift in Sources */,
 				8F3FAECE238D5494004D93C6 /* Image.swift in Sources */,
 				8F1386252398F3B1002E65C3 /* SQLRequest.swift in Sources */,
+				8F0F35E2239A9D1C00072764 /* SQLiteConnection.swift in Sources */,
 				898C120A238D1EB900B187AC /* AppDelegate.swift in Sources */,
 				8F3FAEC8238D4FC7004D93C6 /* Course.swift in Sources */,
 				8F13862B239920DF002E65C3 /* RegisterControllerViewController.swift in Sources */,

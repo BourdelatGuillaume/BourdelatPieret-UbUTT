@@ -9,29 +9,25 @@
 import Foundation
 
 public class UtilisateurConnection {
-    //private SQLiteConnection sqlConnection
+    private let sql:SQLiteConnection
     
     /**
      * Constructeur permettant de se connecter à la base de données SQLite
-     * @param context
      */
     init(){
-        
+        self.sql = SQLiteConnection()
     }
-    
-    /*public UtilisateurConnection(Context context){
-    this.sqlConnection = new SQLiteConnection(context)
-    }*/
     
     /**
      * Vérifie si un utilisateur est enregistré dans la base SQLite
      * @return true si connecté
      */
     public func isConnected() -> Bool{
-        /*SQLiteDatabase dbb = sqlConnection.getWritableDatabase()
-        Cursor cursor = dbb.query("UTILISATEUR",new String[]{"ID_UTILISATEUR"},null,null,null,null,null)
-        return cursor.getCount()>0*/
-        return true
+        self.sql.prepare(queryString: "SELECT ID_UTILISATEUR FROM UTILISATEUR")
+        self.sql.execute()
+        let res:Bool = self.sql.readText(column: 0) != nil
+        self.sql.close()
+        return res
     }
     
     /**
@@ -42,17 +38,16 @@ public class UtilisateurConnection {
     public func getUtilisateurConnecte() -> Utilisateur?{
         var res:Utilisateur?
         if(isConnected()){
-            //SQLiteDatabase dbb = sqlConnection.getWritableDatabase()
-            //Cursor cursor = dbb.query("UTILISATEUR",new String[]{"ID_UTILISATEUR","NUM_TELEPHONE","PASSWORD"},null,null,null,null,null)
-            //cursor.moveToFirst()
-            var params:Array<String> = ["+33606407806","3f08b178cf44b2ba1745bd72cf6c7db6f5097385511e85ca9f210f12376ea0a43bc8323b0ec4a6b92c5ab3912bb7cc1b4b043ac811f664ba4af7f3c51974935c","1"]
-            //params[0]=cursor.getString(cursor.getColumnIndex("NUM_TELEPHONE"))
-            //params[1]=cursor.getString(cursor.getColumnIndex("PASSWORD"))
-            //params[2]=cursor.getString(cursor.getColumnIndex("ID_UTILISATEUR"))
-            let req:SQLRequest<Utilisateur> =  SQLRequest()
-            req.prepare(requete:"SELECT * FROM UTILISATEUR WHERE NUM_TELEPHONE LIKE ? AND PASSWORD LIKE ? AND ID_UTILISATEUR = ?")
-            req.addParametres(parametre: params)
-            res = req.executerOneResult()
+            self.sql.prepare(queryString: "SELECT NUM_TELEPHONE, PASSWORD, ID_UTILISATEUR FROM UTILISATEUR")
+            self.sql.execute()
+            if(self.sql.readText(column: 0) != nil && self.sql.readText(column: 1) != nil && self.sql.readText(column: 2) != nil){
+                var params:Array<String> = [self.sql.readText(column: 0)!,self.sql.readText(column: 1)!,self.sql.readText(column: 2)!]
+                let req:SQLRequest<Utilisateur> =  SQLRequest()
+                req.prepare(requete:"SELECT * FROM UTILISATEUR WHERE NUM_TELEPHONE LIKE ? AND PASSWORD LIKE ? AND ID_UTILISATEUR = ?")
+                req.addParametres(parametre: params)
+                res = req.executerOneResult()
+            }
+            self.sql.close()
         }
         return res
     }
@@ -61,8 +56,9 @@ public class UtilisateurConnection {
      * Supprime l'utilisateur enregistré dans la base SQLite
      */
     public func disconnect() -> Void{
-        //SQLiteDatabase dbb = sqlConnection.getWritableDatabase()
-        //dbb.delete("UTILISATEUR",null,null)
+        self.sql.prepare(queryString: "DELETE FROM UTILISATEUR")
+        self.sql.execute()
+        self.sql.close()
     }
     
     /**
@@ -80,12 +76,12 @@ public class UtilisateurConnection {
         req.addParametres(parametre:[num_telephone,pass])
         utilisateur = req.executerOneResult()
         if(utilisateur != nil){
-            //SQLiteDatabase dbb = sqlConnection.getWritableDatabase()
-            //ContentValues contentValues = new ContentValues()
-            //contentValues.put("ID_UTILISATEUR",utilisateur.getId_utilisateur())
-            //contentValues.put("NUM_TELEPHONE",utilisateur.getNum_telephone())
-            //contentValues.put("PASSWORD",utilisateur.getPassword())
-            //dbb.insert("UTILISATEUR",null,contentValues)
+            self.sql.prepare(queryString: "INSERT INTO UTILISATEUR(ID_UTILISATEUR, NUM_TELEPHONE, PASSWORD) VALUES (?,?,?)")
+            self.sql.addParamInt(param: utilisateur!.getId_utilisateur())
+            self.sql.addParamText(param: utilisateur!.getNum_telephone())
+            self.sql.addParamText(param: utilisateur!.getPassword())
+            self.sql.execute()
+            self.sql.close()
         }
         return utilisateur
     }
@@ -153,16 +149,18 @@ public class UtilisateurConnection {
     }
     
     public func updateTelSQLite( tel:String, id:Int){
-        //SQLiteDatabase dbb = sqlConnection.getWritableDatabase()
-        //ContentValues contentValues = new ContentValues()
-        //contentValues.put("NUM_TELEPHONE",tel)
-        //dbb.update("UTILISATEUR",contentValues,"ID_UTILISATEUR="+id,null)
+        self.sql.prepare(queryString: "UPDATE UTILISATEUR SET NUM_TELEPHONE=? WHERE ID_UTILISATEUR=?")
+        self.sql.addParamText(param: tel)
+        self.sql.addParamInt(param: id)
+        self.sql.execute()
+        self.sql.close()
     }
     
     public func updatePasswordSQLite( password:String, id:Int){
-        //SQLiteDatabase dbb = sqlConnection.getWritableDatabase()
-        //ContentValues contentValues = new ContentValues()
-        //contentValues.put("PASSWORD",password)
-        //dbb.update("UTILISATEUR",contentValues,"ID_UTILISATEUR="+id,null)
+        self.sql.prepare(queryString: "UPDATE UTILISATEUR SET PASSWORD=? WHERE ID_UTILISATEUR=?")
+        self.sql.addParamText(param: password)
+        self.sql.addParamInt(param: id)
+        self.sql.execute()
+        self.sql.close()
     }
 }
