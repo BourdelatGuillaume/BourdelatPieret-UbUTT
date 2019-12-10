@@ -16,7 +16,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
     
     private let locationManager = CLLocationManager()
     
-    private var location:CLLocationCoordinate2D!
+    private var location:CLLocation!
     
     var user:Utilisateur?
     
@@ -24,6 +24,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
         super.viewDidLoad()
         newCourseBtn.layer.cornerRadius = 4
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        map.isMyLocationEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,13 +45,22 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
     /* GESTION MAP */
     
     func updateLocationOnMap(){
-        map.animate(to: GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: Constants.DEFAULT_ZOOM))
+        map.animate(to: GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: Constants.DEFAULT_ZOOM))
     }
     
     /* FIN MAP */
     
     /* -------------------------------------------------------------------------------------- */
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.destination is UINavigationController{
+            let navVC = segue.destination as? UINavigationController
+            let vc = navVC?.topViewController as? CreateCourseActivityController
+            vc?.user = self.user
+            vc?.location = location
+        }
+    }
+    
 }
 /* LOCATION MANAGER */
 extension HomeActivityController: CLLocationManagerDelegate {
@@ -75,7 +85,7 @@ extension HomeActivityController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // .requestLocation will only pass one location to the locations array hence we can access it by taking the first element of the array
         if let loc = locations.first {
-            self.location = loc.coordinate
+            self.location = loc
             updateLocationOnMap()
         }
     }

@@ -4,6 +4,7 @@
 //
 //  Created by if26-grp1 on 26/11/2019.
 //  Copyright © 2019 BourdelatPieret. All rights reserved.
+// +33 6 06 40 78 06 -> test12
 //
 
 import UIKit
@@ -26,6 +27,8 @@ class MainActivityController: UIViewController {
                 self.signIn(user:utilisateur!)
             }
         }
+        num_tel.text = "+33606407806"
+        password.text = "test12"
     }
     
     @IBAction func onClickConnection(_ sender: UIButton) {
@@ -59,8 +62,7 @@ class MainActivityController: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is HomeActivityController
         {
             let vc = segue.destination as? HomeActivityController

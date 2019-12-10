@@ -31,6 +31,11 @@
 		892B6C25239911C000C481C7 /* list_grey_27x27.png in Resources */ = {isa = PBXBuildFile; fileRef = 892B6C23239911C000C481C7 /* list_grey_27x27.png */; };
 		892B6C282399141300C481C7 /* CreateCourseActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B6C272399141300C481C7 /* CreateCourseActivityController.swift */; };
 		89459677238FBB1500478C78 /* BDConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89459676238FBB1500478C78 /* BDConnection.swift */; };
+		8953F87F239F99A900C8188A /* GooglePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8953F87E239F99A900C8188A /* GooglePlaces.framework */; };
+		8953F881239F99B400C8188A /* GooglePlaces.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8953F880239F99B400C8188A /* GooglePlaces.bundle */; };
+		8953F891239F9E9E00C8188A /* DestinationPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953F890239F9E9E00C8188A /* DestinationPickerController.swift */; };
+		8953F893239FA25D00C8188A /* isAbleToReceiveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953F892239FA25D00C8188A /* isAbleToReceiveData.swift */; };
+		8953F895239FAFAA00C8188A /* ConfirmCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8953F894239FAFAA00C8188A /* ConfirmCourseController.swift */; };
 		898C120A238D1EB900B187AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898C1209238D1EB900B187AC /* AppDelegate.swift */; };
 		898C120F238D1EB900B187AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898C120D238D1EB900B187AC /* Main.storyboard */; };
 		898C1211238D1EC700B187AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898C1210238D1EC700B187AC /* Assets.xcassets */; };
@@ -74,6 +79,11 @@
 		892B6C23239911C000C481C7 /* list_grey_27x27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_grey_27x27.png; sourceTree = "<group>"; };
 		892B6C272399141300C481C7 /* CreateCourseActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCourseActivityController.swift; sourceTree = "<group>"; };
 		89459676238FBB1500478C78 /* BDConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDConnection.swift; sourceTree = "<group>"; };
+		8953F87E239F99A900C8188A /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlaces.framework; sourceTree = "<group>"; };
+		8953F880239F99B400C8188A /* GooglePlaces.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
+		8953F890239F9E9E00C8188A /* DestinationPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationPickerController.swift; sourceTree = "<group>"; };
+		8953F892239FA25D00C8188A /* isAbleToReceiveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isAbleToReceiveData.swift; sourceTree = "<group>"; };
+		8953F894239FAFAA00C8188A /* ConfirmCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCourseController.swift; sourceTree = "<group>"; };
 		898C1206238D1EB900B187AC /* UbUTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UbUTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		898C1209238D1EB900B187AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		898C120E238D1EB900B187AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -99,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8953F87F239F99A900C8188A /* GooglePlaces.framework in Frameworks */,
 				892B6C112398F39700C481C7 /* libc++.tbd in Frameworks */,
 				892B6C122398F39700C481C7 /* Accelerate.framework in Frameworks */,
 				892B6C132398F39700C481C7 /* CoreData.framework in Frameworks */,
@@ -157,6 +168,8 @@
 		898C11FD238D1EB900B187AC = {
 			isa = PBXGroup;
 			children = (
+				8953F880239F99B400C8188A /* GooglePlaces.bundle */,
+				8953F87E239F99A900C8188A /* GooglePlaces.framework */,
 				892B6BFF2398F2B800C481C7 /* GoogleMaps.bundle */,
 				892B6BF92398F18B00C481C7 /* GoogleMaps.framework */,
 				892B6BFA2398F19400C481C7 /* GoogleMapsCore.framework */,
@@ -182,6 +195,7 @@
 				8F3FAEC2238D4B90004D93C6 /* Core */,
 				8F3FAEC1238D4B85004D93C6 /* Model */,
 				892B6C272399141300C481C7 /* CreateCourseActivityController.swift */,
+				8953F890239F9E9E00C8188A /* DestinationPickerController.swift */,
 				898C1209238D1EB900B187AC /* AppDelegate.swift */,
 				898C120D238D1EB900B187AC /* Main.storyboard */,
 				898C1210238D1EC700B187AC /* Assets.xcassets */,
@@ -190,6 +204,7 @@
 				8F3FAECF238D56BA004D93C6 /* MainActivityController.swift */,
 				892B6BF42398ED5700C481C7 /* HomeActivityController.swift */,
 				8F13862A239920DF002E65C3 /* RegisterControllerViewController.swift */,
+				8953F894239FAFAA00C8188A /* ConfirmCourseController.swift */,
 			);
 			path = UbUTT;
 			sourceTree = "<group>";
@@ -215,6 +230,7 @@
 				8F1386242398F3B1002E65C3 /* SQLRequest.swift */,
 				8F13862823990F53002E65C3 /* UtilisateurConnection.swift */,
 				8F0F35E1239A9D1C00072764 /* SQLiteConnection.swift */,
+				8953F892239FA25D00C8188A /* isAbleToReceiveData.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -283,6 +299,7 @@
 				898C1211238D1EC700B187AC /* Assets.xcassets in Resources */,
 				898C120F238D1EB900B187AC /* Main.storyboard in Resources */,
 				892B6C002398F2B900C481C7 /* GoogleMaps.bundle in Resources */,
+				8953F881239F99B400C8188A /* GooglePlaces.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8953F893239FA25D00C8188A /* isAbleToReceiveData.swift in Sources */,
 				8F3FAECC238D540C004D93C6 /* Statut.swift in Sources */,
 				8F3FAECE238D5494004D93C6 /* Image.swift in Sources */,
 				8F1386252398F3B1002E65C3 /* SQLRequest.swift in Sources */,
@@ -301,6 +319,7 @@
 				8F3FAEC8238D4FC7004D93C6 /* Course.swift in Sources */,
 				8F13862B239920DF002E65C3 /* RegisterControllerViewController.swift in Sources */,
 				8F3FAEC4238D4BC9004D93C6 /* Constants.swift in Sources */,
+				8953F891239F9E9E00C8188A /* DestinationPickerController.swift in Sources */,
 				8F3FAED0238D56BA004D93C6 /* MainActivityController.swift in Sources */,
 				8F1386272398F92F002E65C3 /* Entity.swift in Sources */,
 				8F3FAEC6238D4D58004D93C6 /* Utilisateur.swift in Sources */,
@@ -308,6 +327,7 @@
 				8F13862923990F53002E65C3 /* UtilisateurConnection.swift in Sources */,
 				8F3FAECA238D50F3004D93C6 /* Conducteur.swift in Sources */,
 				89459677238FBB1500478C78 /* BDConnection.swift in Sources */,
+				8953F895239FAFAA00C8188A /* ConfirmCourseController.swift in Sources */,
 				892B6C282399141300C481C7 /* CreateCourseActivityController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
