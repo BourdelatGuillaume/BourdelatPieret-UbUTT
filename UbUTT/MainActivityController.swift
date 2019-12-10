@@ -21,6 +21,10 @@ class MainActivityController: UIViewController {
         super.viewDidLoad()
         utilisateurConnection = UtilisateurConnection()
         //utilisateurConnection!.disconnect()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if(utilisateurConnection!.isConnected()){
             let utilisateur:Utilisateur? = utilisateurConnection!.getUtilisateurConnecte()
             if(utilisateur != nil) {
@@ -33,12 +37,12 @@ class MainActivityController: UIViewController {
     
     @IBAction func onClickConnection(_ sender: UIButton) {
         if(num_tel.text!.count<10){
-            num_tel.backgroundColor = UIColor.init(red: 231, green: 48, blue: 48, alpha: 1)
+            num_tel.backgroundColor = UIColor.red
         } else {
             num_tel.backgroundColor = UIColor.white
         }
         if(password.text!.count<6){
-            password.backgroundColor = UIColor.init(red: 231, green: 48, blue: 48, alpha: 1)
+            password.backgroundColor = UIColor.red
         } else {
             password.backgroundColor = UIColor.white
         }
@@ -48,11 +52,6 @@ class MainActivityController: UIViewController {
                 self.signIn(user: utilisateur!);
             }
         }
-    }
-    
-    @IBAction func onClickRegister(_ sender: UIButton) {
-        //Intent registerActivity = new Intent(this, RegisterActivity.class);
-        //startActivity(registerActivity);
     }
     
     private func signIn(user:Utilisateur){

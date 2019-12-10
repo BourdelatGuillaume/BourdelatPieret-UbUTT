@@ -14,6 +14,16 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
     @IBOutlet weak var map: GMSMapView!
     @IBOutlet weak var newCourseBtn: UIButton!
     
+    @IBOutlet weak var leading: NSLayoutConstraint!
+    @IBOutlet weak var trailing: NSLayoutConstraint!
+    @IBOutlet weak var menuHamburgerNoir: UIView!
+    @IBOutlet weak var menuHamburger: UIView!
+    
+    @IBOutlet weak var btMenuDriver: UIButton!
+    @IBOutlet weak var textMenuNameUser: UILabel!
+    @IBOutlet weak var textMenuNoteUser: UILabel!
+    
+    
     private let locationManager = CLLocationManager()
     
     private var location:CLLocation!
@@ -25,6 +35,48 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
         newCourseBtn.layer.cornerRadius = 4
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         map.isMyLocationEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        menuHamburgerNoir.addGestureRecognizer(tap)
+        
+        if(user != nil){
+            if(user!.getConducteur() != nil){
+                btMenuDriver.isHidden = false
+            } else {
+                btMenuDriver.isHidden = true
+            }
+            textMenuNameUser.text=user!.getNom_utilisateur()+" "+user!.getPrenom_utilisateur()
+            textMenuNoteUser.text = String(format:"%.1f", user!.getNoteUtilisateur())
+        }
+    }
+    
+    @IBAction func onMenuClick(_ sender: UIButton) {
+        menuHamburgerNoir.isHidden = false
+        menuHamburger.isHidden = false
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        menuHamburgerNoir.isHidden = true
+        menuHamburger.isHidden = true
+    }
+    
+    @IBAction func onClickParametre(_ sender: UIButton) {
+    }
+    
+    @IBAction func onClickHistory(_ sender: UIButton) {
+    }
+    
+    @IBAction func onClickDriver(_ sender: UIButton) {
+    }
+    
+    @IBAction func onClickDisconnect(_ sender: UIButton) {
+        let uc:UtilisateurConnection = UtilisateurConnection();
+        uc.disconnect();
+        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "segueDisconnect", sender: nil)
+    }
+    
+    @IBAction func onClickPolitic(_ sender: UIButton) {
     }
     
     override func viewWillAppear(_ animated: Bool) {

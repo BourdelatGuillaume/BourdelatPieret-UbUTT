@@ -41,7 +41,7 @@ public class UtilisateurConnection {
             self.sql.prepare(queryString: "SELECT NUM_TELEPHONE, PASSWORD, ID_UTILISATEUR FROM UTILISATEUR")
             self.sql.execute()
             if(self.sql.readText(column: 0) != nil && self.sql.readText(column: 1) != nil && self.sql.readText(column: 2) != nil){
-                var params:Array<String> = [self.sql.readText(column: 0)!,self.sql.readText(column: 1)!,self.sql.readText(column: 2)!]
+                let params:Array<String> = [self.sql.readText(column: 0)!,self.sql.readText(column: 1)!,self.sql.readText(column: 2)!]
                 let req:SQLRequest<Utilisateur> =  SQLRequest()
                 req.prepare(requete:"SELECT * FROM UTILISATEUR WHERE NUM_TELEPHONE LIKE ? AND PASSWORD LIKE ? AND ID_UTILISATEUR = ?")
                 req.addParametres(parametre: params)
