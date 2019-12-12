@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UbUTT/ConfirmCourseController.swift"
-            timestampString = "597839749.632143"
+            timestampString = "597841299.732482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
@@ -58,13 +58,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UbUTT/ConfirmCourseController.swift"
-            timestampString = "597839749.632242"
+            timestampString = "597841299.732573"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UbUTT/CreateCourseActivityController.swift"
+            timestampString = "597841299.732656"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "pass(data:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UbUTT.CreateCourseActivityController.pass(data: __C.GMSAutocompletePrediction) -&gt; ()"
+                  moduleName = "UbUTT"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/if26-grp3/Documents/BourdelatPieret-UbUTT/UbUTT/CreateCourseActivityController.swift"
+                  timestampString = "597840124.559523"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "397">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.GMSPlace&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in UbUTT.CreateCourseActivityController.pass(data: __C.GMSAutocompletePrediction) -&gt; ()"
+                  moduleName = "UbUTT"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/if26-grp3/Documents/BourdelatPieret-UbUTT/UbUTT/CreateCourseActivityController.swift"
+                  timestampString = "597840124.563079"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "57">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
