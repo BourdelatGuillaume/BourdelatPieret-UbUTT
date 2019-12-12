@@ -84,6 +84,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
     }
     
     @IBAction func onClickPolitic(_ sender: UIButton) {
+        performSegue(withIdentifier: "seguePolitic", sender: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +118,10 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
             let vc = navVC?.topViewController as? CreateCourseActivityController
             vc?.user = self.user
             vc?.location = location
+        }
+        if segue.destination is PoliticController{
+            let vc = segue.destination as? PoliticController
+            vc?.user = self.user
         }
     }
     

@@ -21,23 +21,23 @@ class RegisterControllerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        politic.isOn=false
         // Do any additional setup after loading the view.
     }
     
 
     @IBAction func onClickRegister(_ sender: UIButton) {
-        if(nom.text!.count>0){
+        if(nom.text!.count<1){
             nom.backgroundColor = UIColor.red
         } else {
             nom.backgroundColor = UIColor.white
         }
-        if(prenom.text!.count>0){
+        if(prenom.text!.count<1){
             prenom.backgroundColor = UIColor.red
         } else {
             prenom.backgroundColor = UIColor.white
         }
-        if(email.text!.count>0){
+        if(email.text!.count<1){
             email.backgroundColor = UIColor.red
         } else {
             email.backgroundColor = UIColor.white
@@ -52,14 +52,16 @@ class RegisterControllerViewController: UIViewController {
         } else {
             pass.backgroundColor = UIColor.white
         }
-        let utilisateurConnection:UtilisateurConnection =  UtilisateurConnection();
-        let utilisateur:Utilisateur? = utilisateurConnection.register(nom: nom.text!, prenom: prenom.text!, email: email.text!, num_tel: numero.text!, password: pass.text!)
-        if (utilisateur != nil) {
-            signIn(user: utilisateur!)
-        } /*else {
-            Toast toast = Toast.makeText(this, "L'email ou le numéro de téléphone est déjà utilisé", Toast.LENGTH_LONG);
-            toast.show();
-        }*/
+        if(nom.text!.count>0 && prenom.text!.count>0 && email.text!.count>0 && numero.text!.count>=10 && pass.text!.count>=6 && politic.isOn){
+            let utilisateurConnection:UtilisateurConnection =  UtilisateurConnection();
+            let utilisateur:Utilisateur? = utilisateurConnection.register(nom: nom.text!, prenom: prenom.text!, email: email.text!, num_tel: numero.text!, password: pass.text!)
+            if (utilisateur != nil) {
+                signIn(user: utilisateur!)
+            } /*else {
+                Toast toast = Toast.makeText(this, "L'email ou le numéro de téléphone est déjà utilisé", Toast.LENGTH_LONG);
+                toast.show();
+            }*/
+        }
     }
     
     private func signIn(user:Utilisateur){
