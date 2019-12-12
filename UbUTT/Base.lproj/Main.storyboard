@@ -171,7 +171,6 @@
                                 <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="S'inscrire"/>
                                 <connections>
-                                    <action selector="onClickRegister:" destination="dEx-x3-Een" eventType="touchDown" id="zSS-le-lhQ"/>
                                     <segue destination="et4-ac-WTc" kind="show" id="BB9-9X-Ymw"/>
                                 </connections>
                             </button>
