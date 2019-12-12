@@ -143,6 +143,7 @@ class CreateCourseActivityController: UIViewController, UIApplicationDelegate, G
         textPtArrivee.text = data.attributedPrimaryText.string
         
         let placeClient = GMSPlacesClient()
+        print(data.placeID)
         placeClient.lookUpPlaceID(data.placeID) { (place, error) -> Void in
             if error != nil {
                 print("loopUp error 1")
