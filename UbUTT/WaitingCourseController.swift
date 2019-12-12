@@ -11,6 +11,9 @@ import GoogleMaps
 
 class WaitingCourseController: UIViewController {
 
+    @IBAction func cancelCourse(_ sender: UIButton) {
+        abortCourse()
+    }
     
     @IBOutlet weak var map: GMSMapView!
     var originLocation: CLLocation!
@@ -26,9 +29,11 @@ class WaitingCourseController: UIViewController {
     
     @IBOutlet weak var timerView: UILabel!
     
+    public static let segueIdentifier = "segueBetweenConfirmAndWaiting"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.backBarButtonItem?.action = #selector(WaitingCourseController.back(sender:))
+        navigationItem.leftBarButtonItem?.action = #selector(WaitingCourseController.back(sender:))
         map.isUserInteractionEnabled = false
         
         if user != nil && destinationLocation != nil && originLocation != nil {
@@ -71,8 +76,7 @@ class WaitingCourseController: UIViewController {
     }
 
     @objc func back(sender: UIBarButtonItem){
-        navigationController?.popToRootViewController(animated: true)
-        // todo delete from database the course
+        abortCourse()
     }
     
     /* -------------------------------------------------------------------------------------- */
@@ -93,5 +97,10 @@ class WaitingCourseController: UIViewController {
     /* FIN MAP */
     
     /* -------------------------------------------------------------------------------------- */
+    
+    func abortCourse(){
+        navigationController?.popToRootViewController(animated: true)
+        // todo remove from bdd
+    }
     
 }
