@@ -57,6 +57,7 @@
 		8F5F308223A2240700F945AD /* menu_hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F5F307D23A2240700F945AD /* menu_hamburger.png */; };
 		8F5F308323A2240700F945AD /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F5F307E23A2240700F945AD /* history.png */; };
 		8F5F308423A2240700F945AD /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F5F307F23A2240700F945AD /* star.png */; };
+		8F5F308623A234AA00F945AD /* PoliticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F308523A234A900F945AD /* PoliticController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		8F5F307D23A2240700F945AD /* menu_hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_hamburger.png; sourceTree = "<group>"; };
 		8F5F307E23A2240700F945AD /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
 		8F5F307F23A2240700F945AD /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		8F5F308523A234A900F945AD /* PoliticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliticController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 				892B6BF42398ED5700C481C7 /* HomeActivityController.swift */,
 				8F13862A239920DF002E65C3 /* RegisterControllerViewController.swift */,
 				8953F894239FAFAA00C8188A /* ConfirmCourseController.swift */,
+				8F5F308523A234A900F945AD /* PoliticController.swift */,
 			);
 			path = UbUTT;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				8F13862B239920DF002E65C3 /* RegisterControllerViewController.swift in Sources */,
 				8F3FAEC4238D4BC9004D93C6 /* Constants.swift in Sources */,
 				8953F891239F9E9E00C8188A /* DestinationPickerController.swift in Sources */,
+				8F5F308623A234AA00F945AD /* PoliticController.swift in Sources */,
 				8F3FAED0238D56BA004D93C6 /* MainActivityController.swift in Sources */,
 				8F1386272398F92F002E65C3 /* Entity.swift in Sources */,
 				8F3FAEC6238D4D58004D93C6 /* Utilisateur.swift in Sources */,
