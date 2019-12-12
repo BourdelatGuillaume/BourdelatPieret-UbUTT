@@ -45,7 +45,15 @@ class CreateCourseActivityController: UIViewController, UIApplicationDelegate, G
             destBtnState = 0
             
             destMarker.map = nil
-            performSegue(withIdentifier: ConfirmCourseController.segueIdentifier, sender: self)
+            getPlacesFromLocation(location: CLLocation(latitude: map.camera.target.latitude, longitude: map.camera.target.longitude), completionHandler: { (place) -> Void in
+                if place != nil {
+                    print("place found !")
+                    self.destLocation = place?.location
+                    self.performSegue(withIdentifier: ConfirmCourseController.segueIdentifier, sender: nil)
+                } else {
+                    print("getPlacesFromLocation error: no place found")
+                }
+            })
         }
     }
     
@@ -89,6 +97,7 @@ class CreateCourseActivityController: UIViewController, UIApplicationDelegate, G
             let vc = segue.destination as? ConfirmCourseController
             vc?.originLocation = location
             vc?.destinationLocation = destLocation
+            vc?.user = user
         }
     }
     
@@ -131,16 +140,28 @@ class CreateCourseActivityController: UIViewController, UIApplicationDelegate, G
     /* -------------------------------------------------------------------------------------- */
     
     func pass(data: GMSAutocompletePrediction) {
-        destination = data
-        textPtArrivee.text = destination.attributedPrimaryText.string
-        getPlacesFromLocation(location: location!, completionHandler: { (place) -> Void in
-            if place != nil {
-                self.destLocation = place!.location
-                self.performSegue(withIdentifier: ConfirmCourseController.segueIdentifier, sender: nil)
-            } else {
-                self.dismiss(animated: true, completion: nil)
+        textPtArrivee.text = data.attributedPrimaryText.string
+        
+        let placeClient = GMSPlacesClient()
+        placeClient.lookUpPlaceID(data.placeID) { (place, error) -> Void in
+            if error != nil {
+                print("loopUp error 1")
+                return
             }
-        })
+            if let place = place {
+                self.getPlacesFromLocation(location: CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude), completionHandler: { (place) -> Void in
+                    if place != nil {
+                        print("place found ! ")
+                        self.destLocation = place?.location
+                        self.performSegue(withIdentifier: ConfirmCourseController.segueIdentifier, sender: self)
+                    } else {
+                        print("getPlacesFromLocation error: no place found")
+                    }
+                })
+            } else {
+                print("loopUp error fetching place")
+            }
+        }
     }
     
 }

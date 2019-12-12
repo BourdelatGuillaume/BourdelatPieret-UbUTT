@@ -13,17 +13,47 @@ class ConfirmCourseController: UIViewController {
 
     public static let segueIdentifier: String = "segueBetweenCreateCourseAndConfirmCourse"
     
+    @IBOutlet weak var btnConfirm: UIButton!
+    
     @IBOutlet weak var map: GMSMapView!
     var originLocation: CLLocation!
+    var originMarker: GMSMarker!
     var destinationLocation: CLLocation!
+    var destinationMarker: GMSMarker!
+    
+    @IBOutlet weak var textDistance: UILabel!
+    var distance: Double?
+    @IBOutlet weak var textPrix: UILabel!
+    var prix: Double?
     
     var user: Utilisateur!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnConfirm.layer.cornerRadius = 4
+        map.isUserInteractionEnabled = false
         
         if user != nil && destinationLocation != nil && originLocation != nil {
+            distance = getDistance()
+            prix = distance!*Constants.pricePerMeter
+            var unite = "m";
+            if distance! > 1000 {
+                distance = distance!/1000;
+                unite = "km";
+            }
+            textDistance.text = String.localizedStringWithFormat("%.2f %@", distance!, unite)
+            textPrix.text = String(Int(prix!-1)) + " - " + String(Int(prix!+1)) + " €"
             
+            originMarker = GMSMarker()
+            originMarker.position = map.camera.target
+            originMarker.title = "Départ"
+            originMarker.icon = UIImage(named: "person_pin_circle_black_24x24.png")
+            originMarker.map = map
+            destinationMarker = GMSMarker()
+            destinationMarker.position = map.camera.target
+            destinationMarker.title = "Destination"
+            destinationMarker.icon = UIImage(named: "flag_black_27x27.png")
+            destinationMarker.map = map
         } else {
             self.dismiss(animated: true)
         }
@@ -57,5 +87,8 @@ class ConfirmCourseController: UIViewController {
     
     /* -------------------------------------------------------------------------------------- */
     
+    private func getDistance() -> Double{
+        return HaversineCalculator.calculateDistance(p1: originLocation.coordinate, p2: destinationLocation.coordinate);
+    }
 
 }

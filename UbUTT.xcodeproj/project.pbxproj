@@ -31,6 +31,9 @@
 		892B6C25239911C000C481C7 /* list_grey_27x27.png in Resources */ = {isa = PBXBuildFile; fileRef = 892B6C23239911C000C481C7 /* list_grey_27x27.png */; };
 		892B6C282399141300C481C7 /* CreateCourseActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B6C272399141300C481C7 /* CreateCourseActivityController.swift */; };
 		8945948823A2326600E7933B /* flag_black_27x27.png in Resources */ = {isa = PBXBuildFile; fileRef = 8945948723A2326600E7933B /* flag_black_27x27.png */; };
+		8945948A23A23BC000E7933B /* HaversineCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8945948923A23BC000E7933B /* HaversineCalculator.swift */; };
+		8945948C23A23F7100E7933B /* WaitingCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8945948B23A23F7100E7933B /* WaitingCourseController.swift */; };
+		8945948E23A2480700E7933B /* person_pin_circle_black_24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = 8945948D23A2480700E7933B /* person_pin_circle_black_24x24.png */; };
 		89459677238FBB1500478C78 /* BDConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89459676238FBB1500478C78 /* BDConnection.swift */; };
 		8953F87F239F99A900C8188A /* GooglePlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8953F87E239F99A900C8188A /* GooglePlaces.framework */; };
 		8953F881239F99B400C8188A /* GooglePlaces.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8953F880239F99B400C8188A /* GooglePlaces.bundle */; };
@@ -85,6 +88,9 @@
 		892B6C23239911C000C481C7 /* list_grey_27x27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_grey_27x27.png; sourceTree = "<group>"; };
 		892B6C272399141300C481C7 /* CreateCourseActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCourseActivityController.swift; sourceTree = "<group>"; };
 		8945948723A2326600E7933B /* flag_black_27x27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag_black_27x27.png; sourceTree = "<group>"; };
+		8945948923A23BC000E7933B /* HaversineCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaversineCalculator.swift; sourceTree = "<group>"; };
+		8945948B23A23F7100E7933B /* WaitingCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingCourseController.swift; sourceTree = "<group>"; };
+		8945948D23A2480700E7933B /* person_pin_circle_black_24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person_pin_circle_black_24x24.png; sourceTree = "<group>"; };
 		89459676238FBB1500478C78 /* BDConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDConnection.swift; sourceTree = "<group>"; };
 		8953F87E239F99A900C8188A /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlaces.framework; sourceTree = "<group>"; };
 		8953F880239F99B400C8188A /* GooglePlaces.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 		892B6C26239911EB00C481C7 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				8945948D23A2480700E7933B /* person_pin_circle_black_24x24.png */,
 				8945948723A2326600E7933B /* flag_black_27x27.png */,
 				8F5F307C23A2240700F945AD /* cle.png */,
 				8F5F307E23A2240700F945AD /* history.png */,
@@ -223,6 +230,7 @@
 				892B6BF42398ED5700C481C7 /* HomeActivityController.swift */,
 				8F13862A239920DF002E65C3 /* RegisterControllerViewController.swift */,
 				8953F894239FAFAA00C8188A /* ConfirmCourseController.swift */,
+				8945948B23A23F7100E7933B /* WaitingCourseController.swift */,
 			);
 			path = UbUTT;
 			sourceTree = "<group>";
@@ -249,6 +257,7 @@
 				8F13862823990F53002E65C3 /* UtilisateurConnection.swift */,
 				8F0F35E1239A9D1C00072764 /* SQLiteConnection.swift */,
 				8953F892239FA25D00C8188A /* isAbleToReceiveData.swift */,
+				8945948923A23BC000E7933B /* HaversineCalculator.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -322,6 +331,7 @@
 				898C120F238D1EB900B187AC /* Main.storyboard in Resources */,
 				892B6C002398F2B900C481C7 /* GoogleMaps.bundle in Resources */,
 				8953F881239F99B400C8188A /* GooglePlaces.bundle in Resources */,
+				8945948E23A2480700E7933B /* person_pin_circle_black_24x24.png in Resources */,
 				8F5F308223A2240700F945AD /* menu_hamburger.png in Resources */,
 				8F5F308023A2240700F945AD /* logout.png in Resources */,
 			);
@@ -336,6 +346,7 @@
 			files = (
 				8953F893239FA25D00C8188A /* isAbleToReceiveData.swift in Sources */,
 				8F3FAECC238D540C004D93C6 /* Statut.swift in Sources */,
+				8945948C23A23F7100E7933B /* WaitingCourseController.swift in Sources */,
 				8F3FAECE238D5494004D93C6 /* Image.swift in Sources */,
 				8F1386252398F3B1002E65C3 /* SQLRequest.swift in Sources */,
 				8F0F35E2239A9D1C00072764 /* SQLiteConnection.swift in Sources */,
@@ -353,6 +364,7 @@
 				89459677238FBB1500478C78 /* BDConnection.swift in Sources */,
 				8953F895239FAFAA00C8188A /* ConfirmCourseController.swift in Sources */,
 				892B6C282399141300C481C7 /* CreateCourseActivityController.swift in Sources */,
+				8945948A23A23BC000E7933B /* HaversineCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
