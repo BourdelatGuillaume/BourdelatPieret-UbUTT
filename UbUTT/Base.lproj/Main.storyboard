@@ -748,7 +748,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onClickDestinationOnMap:" destination="C0d-7z-0zU" eventType="touchDown" id="BfV-Wv-vOg"/>
-                                    <segue destination="rh6-8C-0fh" kind="show" id="bi2-TX-bbA"/>
+                                    <action selector="onConfirmPressed:" destination="Siu-YN-ZNJ" eventType="touchDown" id="HwL-wJ-Ikv"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJi-GA-Z7B">
@@ -774,6 +774,7 @@
                         <outlet property="map" destination="cxf-CX-G4j" id="dqo-JS-k7G"/>
                         <outlet property="textDistance" destination="sJi-GA-Z7B" id="PSb-77-Zxl"/>
                         <outlet property="textPrix" destination="bf8-ct-6hz" id="t0J-I6-EAm"/>
+                        <segue destination="rh6-8C-0fh" kind="show" identifier="segueBetweenConfirmAndWaiting" id="I1p-v4-6U8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePE-q4-Jjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -814,6 +815,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="cancelCourse:" destination="rh6-8C-0fh" eventType="touchDown" id="gXQ-2p-HG6"/>
                                     <action selector="onClickDestinationOnMap:" destination="C0d-7z-0zU" eventType="touchDown" id="tst-NF-HQG"/>
                                 </connections>
                             </button>

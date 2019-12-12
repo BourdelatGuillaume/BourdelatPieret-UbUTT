@@ -14,6 +14,10 @@ class ConfirmCourseController: UIViewController {
     public static let segueIdentifier: String = "segueBetweenCreateCourseAndConfirmCourse"
     
     @IBOutlet weak var btnConfirm: UIButton!
+    @IBAction func onConfirmPressed(_ sender: UIButton) {
+        // todo create course in bdd
+        performSegue(withIdentifier: WaitingCourseController.segueIdentifier, sender: self)
+    }
     
     @IBOutlet weak var map: GMSMapView!
     var originLocation: CLLocation!

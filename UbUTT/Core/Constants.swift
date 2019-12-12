@@ -38,9 +38,9 @@ public final class Constants{
     public static let NOTE_REQUEST_CODE:Int = 103
     
     // MAP CONSTANTS
-    public static let DEFAULT_ZOOM:Float = 15.0
-    public static let DISTRICT_ZOOM:Float = 16.0
-    public static let TOWN_ZOOM:Float = 14.0
+    public static let DEFAULT_ZOOM:Float = 14.0
+    public static let DISTRICT_ZOOM:Float = 15.0
+    public static let TOWN_ZOOM:Float = 13.0
     
     // OTHERS CONSTANTS
     public static let earthRadiusInKM:Int = 6371
