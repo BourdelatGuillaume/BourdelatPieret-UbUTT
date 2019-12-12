@@ -64,9 +64,14 @@ class RegisterControllerViewController: UIViewController {
     
     private func signIn(user:Utilisateur){
         self.user = user
-        self.dismiss(animated: true, completion: nil)
-        performSegue(withIdentifier: "segueHomeActivity2", sender: nil)
+        //self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "segueHome", sender: nil)
         
+    }
+    
+    @IBAction func onClickReturn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "segueConnection", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
