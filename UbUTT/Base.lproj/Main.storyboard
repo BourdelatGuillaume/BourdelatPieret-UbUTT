@@ -260,7 +260,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="C0d-7z-0zU" kind="show" id="1HV-xE-2Ih"/>
+                                    <action selector="onNewCoursePressed:" destination="uTw-g1-bY7" eventType="touchDown" id="r8b-B4-2uJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVu-bg-Dzd">
@@ -386,7 +386,9 @@
                         <outlet property="newCourseBtn" destination="8oP-5v-c2C" id="GRI-Cz-NCA"/>
                         <outlet property="textMenuNameUser" destination="YuU-JF-Yl1" id="No3-nM-msC"/>
                         <outlet property="textMenuNoteUser" destination="fvy-6Q-UhR" id="hXU-4E-2Bk"/>
+                        <outlet property="textWelcome" destination="O4P-dR-DXT" id="9VU-ar-ZW9"/>
                         <segue destination="dEx-x3-Een" kind="show" identifier="segueDisconnect" id="0nc-qV-dKp"/>
+                        <segue destination="b72-5k-1oY" kind="show" identifier="segueBetweenAccueilAndCreateCourseActivities" id="FkQ-yS-mMr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5in-2A-NcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -476,7 +478,7 @@
         <!--Destination Picker Controller-->
         <scene sceneID="3R9-MH-UoN">
             <objects>
-                <viewController id="xNU-zb-Q4a" customClass="DestinationPickerController" customModule="UbUTT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DestinationPickerController" id="xNU-zb-Q4a" customClass="DestinationPickerController" customModule="UbUTT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8O2-Eb-B7M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -493,7 +495,6 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="onEditingChangedInput:" destination="xNU-zb-Q4a" eventType="editingChanged" id="Fjp-5V-QPx"/>
-                                    <action selector="onEndEdditingInput:" destination="xNU-zb-Q4a" eventType="editingDidEnd" id="WSa-Zc-9T0"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtI-py-dgL">
@@ -530,10 +531,10 @@
             </objects>
             <point key="canvasLocation" x="2442" y="690"/>
         </scene>
-        <!--View Controller-->
+        <!--Confirm Course Controller-->
         <scene sceneID="36V-ew-u0s">
             <objects>
-                <viewController id="Siu-YN-ZNJ" sceneMemberID="viewController">
+                <viewController id="Siu-YN-ZNJ" customClass="ConfirmCourseController" customModule="UbUTT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eUA-Ly-BgH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -547,6 +548,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="DDE-VA-hqV"/>
                     </view>
+                    <connections>
+                        <outlet property="map" destination="cxf-CX-G4j" id="dqo-JS-k7G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePE-q4-Jjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -578,6 +582,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LX8-rA-T8i"/>
-        <segue reference="u6t-eZ-o1D"/>
+        <segue reference="0nc-qV-dKp"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,7 +22,11 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
     @IBOutlet weak var btMenuDriver: UIButton!
     @IBOutlet weak var textMenuNameUser: UILabel!
     @IBOutlet weak var textMenuNoteUser: UILabel!
+    @IBOutlet weak var textWelcome: UILabel!
     
+    @IBAction func onNewCoursePressed(_ sender: UIButton) {
+        performSegue(withIdentifier: CreateCourseActivityController.segueWithHomeID, sender: nil)
+    }
     
     private let locationManager = CLLocationManager()
     
@@ -40,6 +44,9 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
         menuHamburgerNoir.addGestureRecognizer(tap)
         
         if(user != nil){
+            
+            textWelcome.text = "Bonjour, " + user!.getPrenom_utilisateur()
+            
             if(user!.getConducteur() != nil){
                 btMenuDriver.isHidden = false
             } else {
