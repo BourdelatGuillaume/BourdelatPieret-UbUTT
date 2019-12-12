@@ -28,8 +28,10 @@ class DestinationPickerController: UIViewController, UIPickerViewDelegate, UIPic
     
     @IBOutlet weak var confirmBtn: UIButton!
     @IBAction func onConfirmPressed(_ sender: UIButton) {
-        self.delegate.pass(data: self.pickerData[picker.selectedRow(inComponent: 0)])
-        self.dismiss(animated: true, completion: nil)
+        if(self.pickerData.count > 0){
+            self.delegate.pass(data: self.pickerData[picker.selectedRow(inComponent: 0)])
+            //self.dismiss(animated: true)
+        }
     }
     
     
@@ -47,6 +49,7 @@ class DestinationPickerController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        destinationInput.becomeFirstResponder()
         confirmBtn.layer.cornerRadius = 4
 
         self.picker.delegate = self
@@ -57,12 +60,6 @@ class DestinationPickerController: UIViewController, UIPickerViewDelegate, UIPic
             token = GMSAutocompleteSessionToken.init()
         }
         
-    }
-    
-    func viewWillDisappear() {
-        if(delegate != nil){
-            delegate.pass(data: choice)
-        }
     }
     
     // Number of columns of data
@@ -94,7 +91,7 @@ class DestinationPickerController: UIViewController, UIPickerViewDelegate, UIPic
             coordinate: CLLocationCoordinate2DMake(location.coordinate.latitude + (12000*Constants.meterInDegree), location.coordinate.longitude + (12000*Constants.meterInDegree) / cos(location.coordinate.latitude*(Double.pi/180)))
         )
             
-        placesClient?.findAutocompletePredictions(fromQuery: destinationInput.text!, bounds: bounds, boundsMode: GMSAutocompleteBoundsMode.bias, filter: filter, sessionToken: token,
+        placesClient?.findAutocompletePredictions(fromQuery: destinationInput.text!, bounds: bounds, boundsMode: GMSAutocompleteBoundsMode.restrict, filter: filter, sessionToken: token,
             callback: { (results, error) in
                 if let error = error {
                     print("Autocomplete error: \(error)")
