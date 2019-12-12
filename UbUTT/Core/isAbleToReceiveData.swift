@@ -11,4 +11,14 @@ import GooglePlaces
 
 protocol isAbleToReceiveData {
     func pass(data: GMSAutocompletePrediction)
+    
+    func pass(data: Utilisateur)
+}
+extension isAbleToReceiveData {
+    func pass(data: GMSAutocompletePrediction){
+        
+    }
+    func pass(data: Utilisateur){
+        
+    }
 }
