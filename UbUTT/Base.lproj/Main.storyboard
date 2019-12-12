@@ -124,7 +124,6 @@
                                 <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="S'inscrire"/>
                                 <connections>
-                                    <action selector="onClickConnection:" destination="dEx-x3-Een" eventType="touchDown" id="zCQ-IQ-cxq"/>
                                     <action selector="onClickRegister:" destination="et4-ac-WTc" eventType="touchDown" id="jlP-bw-v38"/>
                                 </connections>
                             </button>
@@ -133,7 +132,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="&lt; Retour"/>
                                 <connections>
-                                    <segue destination="dEx-x3-Een" kind="show" id="u6t-eZ-o1D"/>
+                                    <action selector="onClickReturn:" destination="et4-ac-WTc" eventType="touchDown" id="AiT-6i-jLd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -147,12 +146,13 @@
                         <outlet property="pass" destination="PxZ-ak-ROk" id="g6v-30-d8X"/>
                         <outlet property="politic" destination="BlX-yU-9Y3" id="De7-PC-Wus"/>
                         <outlet property="prenom" destination="icQ-UK-EaT" id="dcB-LM-ISH"/>
-                        <segue destination="uTw-g1-bY7" kind="show" identifier="segueHomeActivity2" id="LX8-rA-T8i"/>
+                        <segue destination="dEx-x3-Een" kind="show" identifier="segueConnection" id="Jr1-MM-oA1"/>
+                        <segue destination="uTw-g1-bY7" kind="show" identifier="segueHome" id="OWb-Gh-m6l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbK-l1-huj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170.40000000000001" y="665.21739130434787"/>
+            <point key="canvasLocation" x="-22" y="777"/>
         </scene>
         <!--MainActivity-->
         <scene sceneID="90a-dK-MG8">
@@ -171,7 +171,7 @@
                                 <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="S'inscrire"/>
                                 <connections>
-                                    <segue destination="et4-ac-WTc" kind="show" id="BB9-9X-Ymw"/>
+                                    <action selector="onClickRegister:" destination="dEx-x3-Een" eventType="touchDown" id="V5F-oZ-oQA"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+33 6 41 20 18 95" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u9q-vt-CLG">
@@ -230,6 +230,7 @@
                         <outlet property="num_tel" destination="u9q-vt-CLG" id="d0N-jY-Xxh"/>
                         <outlet property="password" destination="dJN-Dj-GWe" id="CuF-7I-yfa"/>
                         <segue destination="uTw-g1-bY7" kind="show" identifier="segueHomeActivity" id="S6l-Ge-hBR"/>
+                        <segue destination="et4-ac-WTc" kind="show" identifier="segueRegister" id="l0D-3J-swy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDF-UX-5vd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -576,7 +577,8 @@
         <image name="star.png" width="820" height="789"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LX8-rA-T8i"/>
-        <segue reference="u6t-eZ-o1D"/>
+        <segue reference="1HV-xE-2Ih"/>
+        <segue reference="OWb-Gh-m6l"/>
+        <segue reference="Jr1-MM-oA1"/>
     </inferredMetricsTieBreakers>
 </document>

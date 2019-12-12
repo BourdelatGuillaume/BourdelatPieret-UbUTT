@@ -61,6 +61,12 @@ class MainActivityController: UIViewController {
         
     }
     
+    
+    @IBAction func onClickRegister(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "segueRegister", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is HomeActivityController
         {
