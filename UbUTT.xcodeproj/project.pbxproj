@@ -44,6 +44,7 @@
 		898C120F238D1EB900B187AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898C120D238D1EB900B187AC /* Main.storyboard */; };
 		898C1211238D1EC700B187AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898C1210238D1EC700B187AC /* Assets.xcassets */; };
 		898C1214238D1EC700B187AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898C1212238D1EC700B187AC /* LaunchScreen.storyboard */; };
+		8F0AF8AE23A3E68600384A98 /* HistoricViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0AF8AD23A3E68600384A98 /* HistoricViewCell.swift */; };
 		8F0F35E2239A9D1C00072764 /* SQLiteConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F35E1239A9D1C00072764 /* SQLiteConnection.swift */; };
 		8F1386252398F3B1002E65C3 /* SQLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1386242398F3B1002E65C3 /* SQLRequest.swift */; };
 		8F1386272398F92F002E65C3 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1386262398F92F002E65C3 /* Entity.swift */; };
@@ -63,6 +64,8 @@
 		8F5F308423A2240700F945AD /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F5F307F23A2240700F945AD /* star.png */; };
 		8F5F308623A234AA00F945AD /* PoliticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F308523A234A900F945AD /* PoliticController.swift */; };
 		8F5F308823A2511D00F945AD /* DriverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F308723A2511D00F945AD /* DriverController.swift */; };
+		8FC09A2223A3FB6300FACC9A /* HistoricTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC09A2123A3FB6300FACC9A /* HistoricTableViewController.swift */; };
+		8FC09A2423A3FB8200FACC9A /* HistoricController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC09A2323A3FB8200FACC9A /* HistoricController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +108,7 @@
 		898C1210238D1EC700B187AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		898C1213238D1EC700B187AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		898C1215238D1EC700B187AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F0AF8AD23A3E68600384A98 /* HistoricViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricViewCell.swift; sourceTree = "<group>"; };
 		8F0F35E1239A9D1C00072764 /* SQLiteConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteConnection.swift; sourceTree = "<group>"; };
 		8F1386242398F3B1002E65C3 /* SQLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLRequest.swift; sourceTree = "<group>"; };
 		8F1386262398F92F002E65C3 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 		8F5F307F23A2240700F945AD /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		8F5F308523A234A900F945AD /* PoliticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliticController.swift; sourceTree = "<group>"; };
 		8F5F308723A2511D00F945AD /* DriverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverController.swift; sourceTree = "<group>"; };
+		8FC09A2123A3FB6300FACC9A /* HistoricTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricTableViewController.swift; sourceTree = "<group>"; };
+		8FC09A2323A3FB8200FACC9A /* HistoricController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +226,7 @@
 		898C1208238D1EB900B187AC /* UbUTT */ = {
 			isa = PBXGroup;
 			children = (
+				8F0AF8AD23A3E68600384A98 /* HistoricViewCell.swift */,
 				892B6C26239911EB00C481C7 /* Ressources */,
 				8F3FAEC2238D4B90004D93C6 /* Core */,
 				8F3FAEC1238D4B85004D93C6 /* Model */,
@@ -237,6 +244,8 @@
 				8945948B23A23F7100E7933B /* WaitingCourseController.swift */,
 				8F5F308523A234A900F945AD /* PoliticController.swift */,
 				8F5F308723A2511D00F945AD /* DriverController.swift */,
+				8FC09A2123A3FB6300FACC9A /* HistoricTableViewController.swift */,
+				8FC09A2323A3FB8200FACC9A /* HistoricController.swift */,
 			);
 			path = UbUTT;
 			sourceTree = "<group>";
@@ -360,11 +369,14 @@
 				8F5F308823A2511D00F945AD /* DriverController.swift in Sources */,
 				8F3FAEC8238D4FC7004D93C6 /* Course.swift in Sources */,
 				8F13862B239920DF002E65C3 /* RegisterControllerViewController.swift in Sources */,
+				8FC09A2423A3FB8200FACC9A /* HistoricController.swift in Sources */,
 				8F3FAEC4238D4BC9004D93C6 /* Constants.swift in Sources */,
 				8953F891239F9E9E00C8188A /* DestinationPickerController.swift in Sources */,
+				8FC09A2223A3FB6300FACC9A /* HistoricTableViewController.swift in Sources */,
 				8F5F308623A234AA00F945AD /* PoliticController.swift in Sources */,
 				8F3FAED0238D56BA004D93C6 /* MainActivityController.swift in Sources */,
 				8F1386272398F92F002E65C3 /* Entity.swift in Sources */,
+				8F0AF8AE23A3E68600384A98 /* HistoricViewCell.swift in Sources */,
 				8F3FAEC6238D4D58004D93C6 /* Utilisateur.swift in Sources */,
 				892B6BF52398ED5700C481C7 /* HomeActivityController.swift in Sources */,
 				8F13862923990F53002E65C3 /* UtilisateurConnection.swift in Sources */,

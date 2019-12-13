@@ -31,8 +31,8 @@ class MainActivityController: UIViewController {
                 self.signIn(user:utilisateur!)
             }
         }
-        num_tel.text = "+33606407806"
-        password.text = "test12"
+        //num_tel.text = "+33606407806"
+        //password.text = "test12"
     }
     
     @IBAction func onClickConnection(_ sender: UIButton) {

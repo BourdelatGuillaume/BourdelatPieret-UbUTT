@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class HomeActivityController : UIViewController, UIApplicationDelegate {
+class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleToReceiveData {
     
     @IBOutlet weak var map: GMSMapView!
     @IBOutlet weak var newCourseBtn: UIButton!
@@ -71,9 +71,11 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
     }
     
     @IBAction func onClickHistory(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueHistoric", sender: nil)
     }
     
     @IBAction func onClickDriver(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueDriver", sender: nil)
     }
     
     @IBAction func onClickDisconnect(_ sender: UIButton) {
@@ -123,8 +125,21 @@ class HomeActivityController : UIViewController, UIApplicationDelegate {
             let vc = segue.destination as? PoliticController
             vc?.user = self.user
         }
+        if segue.destination is DriverController{
+            let vc = segue.destination as? DriverController
+            vc?.user = self.user
+            vc?.delegate = self
+        }
+        if segue.destination is HistoricController{
+            let vc = segue.destination as? HistoricController
+            vc?.user = self.user    
+        }
     }
     
+    
+    func pass(data: Utilisateur) {
+        self.user = data
+    }
 }
 /* LOCATION MANAGER */
 extension HomeActivityController: CLLocationManagerDelegate {

@@ -22,7 +22,7 @@ public class Statut:Entity {
     }
     
     required init( dictionary: [String : Any]){
-        self.id_statut=dictionary["id_statut"] as? Int ?? 0
+        self.id_statut=Int(dictionary["id_statut"] as? String ?? "0")!
         self.statut=dictionary["statut"] as? String ?? ""
         super.init(dictionary: dictionary)
     }

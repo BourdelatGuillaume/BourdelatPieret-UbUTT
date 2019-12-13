@@ -23,7 +23,7 @@ public class Image:Entity { //extends AsyncTask<Void, Void, Bitmap>
     }
     
     required init( dictionary: [String : Any]){
-        self.id_image=dictionary["id_image"] as? Int ?? 0
+        self.id_image=Int(dictionary["id_image"] as? String ?? "0")!
         self.image_url=dictionary["image_url"] as? String ?? ""
         super.init(dictionary: dictionary)
     }

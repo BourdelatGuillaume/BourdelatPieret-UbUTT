@@ -48,19 +48,19 @@ public class Course:Entity{
     }
     
     required init( dictionary: [String : Any]){
-        self.id_course=dictionary["id_course"] as? Int ?? 0
-        self.id_conducteur=dictionary["id_conducteur"] as? Int ?? 0
-        self.id_passager=dictionary["id_passager"] as? Int ?? 0
-        self.id_statut=dictionary["id_statut"] as? Int ?? 0
+        self.id_course=Int(dictionary["id_course"] as? String ?? "0")!
+        self.id_conducteur=Int(dictionary["id_conducteur"] as? String ?? "0")!
+        self.id_passager=Int(dictionary["id_passager"] as? String ?? "0")!
+        self.id_statut=Int(dictionary["id_statut"] as? String ?? "0")!
         self.date=dictionary["date"] as? String ?? ""
         self.position_conducteur=dictionary["position_conducteur"] as? String ?? ""
         self.point_depart=dictionary["point_depart"] as? String ?? ""
         self.point_arrivee=dictionary["point_arrivee"] as? String ?? ""
         self.heure_depart=dictionary["heure_depart"] as? String ?? ""
         self.heure_arrivee=dictionary["heure_arrivee"] as? String ?? ""
-        self.prix_estime=dictionary["prix_estime"] as? Double ?? 0.0
-        self.note_conducteur = dictionary["note_conducteur"] as? Int ?? -1
-        self.note_passager = dictionary["note_passager"] as? Int ?? -1
+        self.prix_estime=Double(dictionary["prix_estime"] as? String ?? "0.0")!
+        self.note_conducteur = Int(dictionary["note_conducteur"] as? String ?? "-1")!
+        self.note_passager = Int(dictionary["note_passager"] as? String ?? "-1")!
         super.init(dictionary: dictionary)
     }
     

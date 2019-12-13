@@ -15,23 +15,17 @@ class DriverController: UIViewController {
     var user:Utilisateur?
     @IBOutlet weak var stars: UILabel!
     @IBOutlet weak var btEnregistrer: UIButton!
+    @IBOutlet weak var modele: UITextField!
+    @IBOutlet weak var plaque: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if (self.user != nil) {
-            //input_modele.setText(user.getConducteur().getModele_voiture());
-            //input_plaque.setText(user.getConducteur().getPlaque_immatriculation());
+            modele.text = user!.getConducteur()!.getModele_voiture()
+            plaque.text = user!.getConducteur()!.getPlaque_immatriculation()
             stars.text = String(format:"%.1f", (user!.getConducteur()!.getNoteConducteur()))
         }
-        
-        //HomeActivity -> implémente isAbleToReceiveData
-        //implémente fonction pass(Utilisateur)
-        //prepare segue -> delegate = self
-        
-        //Driver->delegate.pass(user)
-        //dismiss()
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func onEditModele(_ sender: UITextField) {
@@ -43,21 +37,19 @@ class DriverController: UIViewController {
     }
     @IBAction func onSave(_ sender: UIButton) {
         btEnregistrer.isEnabled=false
-        /*if(modeleModified || plaqueModified) {
-            if (input_modele.getText().toString().length() < 1) {
-                input_modele.setBackgroundColor(getResources().getColor(R.color.lightRed));
+            if (modele.text!.count < 1) {
+                modele.backgroundColor = UIColor.red
             } else {
-                input_modele.setBackgroundColor(Color.WHITE);
-                this.user.getConducteur().setModele_voiture(input_modele.getText().toString());
+                modele.backgroundColor = UIColor.white
+                self.user!.getConducteur()!.setModele_voiture(modele_voiture: modele.text!);
             }
-            if (input_plaque.getText().toString().length() < 1) {
-                input_plaque.setBackgroundColor(getResources().getColor(R.color.lightRed));
+            if (plaque.text!.count < 1) {
+                plaque.backgroundColor = UIColor.red
             } else {
-                input_plaque.setBackgroundColor(Color.WHITE);
-                this.user.getConducteur().setPlaque_immatriculation(input_plaque.getText().toString().toUpperCase());
+                plaque.backgroundColor = UIColor.white
+                self.user!.getConducteur()!.setPlaque_immatriculation(plaque_immatriculation: plaque.text!);
             }
-            this.user.getConducteur().update();
-        }*/
+            self.user!.getConducteur()!.update();
     }
     @IBAction func onReturn(_ sender: UIButton) {
         delegate.pass(data: user!)

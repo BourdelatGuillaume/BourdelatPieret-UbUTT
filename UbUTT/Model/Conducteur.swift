@@ -29,8 +29,8 @@ public class Conducteur:Entity {
     }
     
     required init( dictionary: [String : Any]){
-        self.id_conducteur=dictionary["id_conducteur"] as? Int ?? 0
-        self.id_utilisateur=dictionary["id_utilisateur"] as? Int ?? 0
+        self.id_conducteur=Int(dictionary["id_conducteur"] as? String ?? "0")!
+        self.id_utilisateur=Int(dictionary["id_utilisateur"] as? String ?? "0")!
         self.modele_voiture=dictionary["modele_voiture"] as? String ?? ""
         self.plaque_immatriculation=dictionary["plaque_immatriculation"] as? String ?? ""
         self.courses=Array()
