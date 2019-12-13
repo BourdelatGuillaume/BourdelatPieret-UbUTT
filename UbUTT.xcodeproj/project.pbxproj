@@ -66,6 +66,9 @@
 		8F5F308823A2511D00F945AD /* DriverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5F308723A2511D00F945AD /* DriverController.swift */; };
 		8FC09A2223A3FB6300FACC9A /* HistoricTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC09A2123A3FB6300FACC9A /* HistoricTableViewController.swift */; };
 		8FC09A2423A3FB8200FACC9A /* HistoricController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC09A2323A3FB8200FACC9A /* HistoricController.swift */; };
+		8FC09A2623A402D600FACC9A /* ParametresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC09A2523A402D600FACC9A /* ParametresController.swift */; };
+		8FC09A2823A4053E00FACC9A /* NoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC09A2723A4053E00FACC9A /* NoteController.swift */; };
+		8FC09A2A23A406C500FACC9A /* star_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FC09A2923A406C300FACC9A /* star_unselected.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +133,9 @@
 		8F5F308723A2511D00F945AD /* DriverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverController.swift; sourceTree = "<group>"; };
 		8FC09A2123A3FB6300FACC9A /* HistoricTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricTableViewController.swift; sourceTree = "<group>"; };
 		8FC09A2323A3FB8200FACC9A /* HistoricController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricController.swift; sourceTree = "<group>"; };
+		8FC09A2523A402D600FACC9A /* ParametresController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametresController.swift; sourceTree = "<group>"; };
+		8FC09A2723A4053E00FACC9A /* NoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteController.swift; sourceTree = "<group>"; };
+		8FC09A2923A406C300FACC9A /* star_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_unselected.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +193,7 @@
 		892B6C26239911EB00C481C7 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				8FC09A2923A406C300FACC9A /* star_unselected.png */,
 				8945948D23A2480700E7933B /* person_pin_circle_black_24x24.png */,
 				8945948723A2326600E7933B /* flag_black_27x27.png */,
 				8F5F307C23A2240700F945AD /* cle.png */,
@@ -246,6 +253,8 @@
 				8F5F308723A2511D00F945AD /* DriverController.swift */,
 				8FC09A2123A3FB6300FACC9A /* HistoricTableViewController.swift */,
 				8FC09A2323A3FB8200FACC9A /* HistoricController.swift */,
+				8FC09A2523A402D600FACC9A /* ParametresController.swift */,
+				8FC09A2723A4053E00FACC9A /* NoteController.swift */,
 			);
 			path = UbUTT;
 			sourceTree = "<group>";
@@ -335,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FC09A2A23A406C500FACC9A /* star_unselected.png in Resources */,
 				892B6C24239911C000C481C7 /* play_arrow_grey_27x27.png in Resources */,
 				8945948823A2326600E7933B /* flag_black_27x27.png in Resources */,
 				892B6C25239911C000C481C7 /* list_grey_27x27.png in Resources */,
@@ -359,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FC09A2623A402D600FACC9A /* ParametresController.swift in Sources */,
 				8953F893239FA25D00C8188A /* isAbleToReceiveData.swift in Sources */,
 				8F3FAECC238D540C004D93C6 /* Statut.swift in Sources */,
 				8945948C23A23F7100E7933B /* WaitingCourseController.swift in Sources */,
@@ -383,6 +394,7 @@
 				8F3FAECA238D50F3004D93C6 /* Conducteur.swift in Sources */,
 				89459677238FBB1500478C78 /* BDConnection.swift in Sources */,
 				8953F895239FAFAA00C8188A /* ConfirmCourseController.swift in Sources */,
+				8FC09A2823A4053E00FACC9A /* NoteController.swift in Sources */,
 				892B6C282399141300C481C7 /* CreateCourseActivityController.swift in Sources */,
 				8945948A23A23BC000E7933B /* HaversineCalculator.swift in Sources */,
 			);

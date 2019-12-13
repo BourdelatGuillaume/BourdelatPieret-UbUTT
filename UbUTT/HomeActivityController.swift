@@ -134,6 +134,14 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
             let vc = segue.destination as? HistoricController
             vc?.user = self.user    
         }
+        if segue.destination is ParametresController{
+            let vc = segue.destination as? ParametresController
+            vc?.user = self.user
+        }
+        if segue.destination is NoteController{
+            let vc = segue.destination as? NoteController
+            vc?.user = self.user
+        }
     }
     
     
