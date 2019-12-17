@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		891A771223A8DA70002C1B9C /* view_list_black_36x36.png in Resources */ = {isa = PBXBuildFile; fileRef = 891A771123A8DA70002C1B9C /* view_list_black_36x36.png */; };
+		891A771423A8DBB1002C1B9C /* WorkActivityControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891A771323A8DBB1002C1B9C /* WorkActivityControllerViewController.swift */; };
+		891A771623A8DCFE002C1B9C /* CourseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891A771523A8DCFE002C1B9C /* CourseViewCell.swift */; };
+		891A771823A8DD82002C1B9C /* WorkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891A771723A8DD82002C1B9C /* WorkTableViewController.swift */; };
 		892B6BF52398ED5700C481C7 /* HomeActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B6BF42398ED5700C481C7 /* HomeActivityController.swift */; };
 		892B6BF82398F17900C481C7 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892B6BF72398F17900C481C7 /* GoogleMapsBase.framework */; };
 		892B6BFB2398F19400C481C7 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892B6BF92398F18B00C481C7 /* GoogleMaps.framework */; };
@@ -72,6 +76,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		891A771123A8DA70002C1B9C /* view_list_black_36x36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_list_black_36x36.png; sourceTree = "<group>"; };
+		891A771323A8DBB1002C1B9C /* WorkActivityControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkActivityControllerViewController.swift; sourceTree = "<group>"; };
+		891A771523A8DCFE002C1B9C /* CourseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewCell.swift; sourceTree = "<group>"; };
+		891A771723A8DD82002C1B9C /* WorkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTableViewController.swift; sourceTree = "<group>"; };
 		892B6BF42398ED5700C481C7 /* HomeActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeActivityController.swift; sourceTree = "<group>"; };
 		892B6BF72398F17900C481C7 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		892B6BF92398F18B00C481C7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
@@ -193,6 +201,7 @@
 		892B6C26239911EB00C481C7 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				891A771123A8DA70002C1B9C /* view_list_black_36x36.png */,
 				8FC09A2923A406C300FACC9A /* star_unselected.png */,
 				8945948D23A2480700E7933B /* person_pin_circle_black_24x24.png */,
 				8945948723A2326600E7933B /* flag_black_27x27.png */,
@@ -255,6 +264,9 @@
 				8FC09A2323A3FB8200FACC9A /* HistoricController.swift */,
 				8FC09A2523A402D600FACC9A /* ParametresController.swift */,
 				8FC09A2723A4053E00FACC9A /* NoteController.swift */,
+				891A771323A8DBB1002C1B9C /* WorkActivityControllerViewController.swift */,
+				891A771523A8DCFE002C1B9C /* CourseViewCell.swift */,
+				891A771723A8DD82002C1B9C /* WorkTableViewController.swift */,
 			);
 			path = UbUTT;
 			sourceTree = "<group>";
@@ -351,6 +363,7 @@
 				898C1214238D1EC700B187AC /* LaunchScreen.storyboard in Resources */,
 				8F5F308323A2240700F945AD /* history.png in Resources */,
 				8F5F308123A2240700F945AD /* cle.png in Resources */,
+				891A771223A8DA70002C1B9C /* view_list_black_36x36.png in Resources */,
 				8F5F308423A2240700F945AD /* star.png in Resources */,
 				898C1211238D1EC700B187AC /* Assets.xcassets in Resources */,
 				898C120F238D1EB900B187AC /* Main.storyboard in Resources */,
@@ -372,11 +385,13 @@
 				8FC09A2623A402D600FACC9A /* ParametresController.swift in Sources */,
 				8953F893239FA25D00C8188A /* isAbleToReceiveData.swift in Sources */,
 				8F3FAECC238D540C004D93C6 /* Statut.swift in Sources */,
+				891A771423A8DBB1002C1B9C /* WorkActivityControllerViewController.swift in Sources */,
 				8945948C23A23F7100E7933B /* WaitingCourseController.swift in Sources */,
 				8F3FAECE238D5494004D93C6 /* Image.swift in Sources */,
 				8F1386252398F3B1002E65C3 /* SQLRequest.swift in Sources */,
 				8F0F35E2239A9D1C00072764 /* SQLiteConnection.swift in Sources */,
 				898C120A238D1EB900B187AC /* AppDelegate.swift in Sources */,
+				891A771623A8DCFE002C1B9C /* CourseViewCell.swift in Sources */,
 				8F5F308823A2511D00F945AD /* DriverController.swift in Sources */,
 				8F3FAEC8238D4FC7004D93C6 /* Course.swift in Sources */,
 				8F13862B239920DF002E65C3 /* RegisterControllerViewController.swift in Sources */,
@@ -389,6 +404,7 @@
 				8F1386272398F92F002E65C3 /* Entity.swift in Sources */,
 				8F0AF8AE23A3E68600384A98 /* HistoricViewCell.swift in Sources */,
 				8F3FAEC6238D4D58004D93C6 /* Utilisateur.swift in Sources */,
+				891A771823A8DD82002C1B9C /* WorkTableViewController.swift in Sources */,
 				892B6BF52398ED5700C481C7 /* HomeActivityController.swift in Sources */,
 				8F13862923990F53002E65C3 /* UtilisateurConnection.swift in Sources */,
 				8F3FAECA238D50F3004D93C6 /* Conducteur.swift in Sources */,

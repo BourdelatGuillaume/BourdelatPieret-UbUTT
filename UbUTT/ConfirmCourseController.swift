@@ -15,8 +15,12 @@ class ConfirmCourseController: UIViewController {
     
     @IBOutlet weak var btnConfirm: UIButton!
     @IBAction func onConfirmPressed(_ sender: UIButton) {
-        // todo create course in bdd
+        courseActive = Course.createInBD(id_utilisateur: user.getId_utilisateur(), depart_lat: originLocation.coordinate.latitude, depart_lng: originLocation.coordinate.longitude, arrivee_lat: destinationLocation.coordinate.latitude, arrivee_lng: destinationLocation.coordinate.longitude, distance: getDistance())
         performSegue(withIdentifier: WaitingCourseController.segueIdentifier, sender: self)
+    }
+    
+    @IBAction func onReturnPressed(_ sender: UIButton) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet weak var map: GMSMapView!
@@ -26,11 +30,11 @@ class ConfirmCourseController: UIViewController {
     var destinationMarker: GMSMarker!
     
     @IBOutlet weak var textDistance: UILabel!
-    var distance: Double?
     @IBOutlet weak var textPrix: UILabel!
     var prix: Double?
     
     var user: Utilisateur!
+    var courseActive: Course?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +42,14 @@ class ConfirmCourseController: UIViewController {
         map.isUserInteractionEnabled = false
         
         if user != nil && destinationLocation != nil && originLocation != nil {
-            distance = getDistance()
-            prix = distance!*Constants.pricePerMeter
+            var distance:Double = getDistance()
+            prix = distance*Constants.pricePerMeter
             var unite = "m";
-            if distance! > 1000 {
-                distance = distance!/1000;
+            if distance > 1000 {
+                distance = distance/1000;
                 unite = "km";
             }
-            textDistance.text = String.localizedStringWithFormat("%.2f %@", distance!, unite)
+            textDistance.text = String.localizedStringWithFormat("%.2f %@", distance, unite)
             textPrix.text = String(Int(prix!-1)) + " - " + String(Int(prix!+1)) + " €"
             
             originMarker = GMSMarker()
@@ -74,6 +78,8 @@ class ConfirmCourseController: UIViewController {
             vc?.originLocation = originLocation
             vc?.destinationLocation = destinationLocation
             vc?.user = user
+            vc?.courseActive = courseActive
+            vc?.map = map
         }
     }
     

@@ -22,6 +22,7 @@ class WaitingCourseController: UIViewController {
     var destinationMarker: GMSMarker!
     
     var user: Utilisateur!
+    var courseActive: Course!
     
     var timer: Timer?
     var minute: Int = 0
@@ -36,7 +37,7 @@ class WaitingCourseController: UIViewController {
         navigationItem.leftBarButtonItem?.action = #selector(WaitingCourseController.back(sender:))
         map.isUserInteractionEnabled = false
         
-        if user != nil && destinationLocation != nil && originLocation != nil {
+        if user != nil && destinationLocation != nil && originLocation != nil && courseActive != nil {
             originMarker = GMSMarker()
             originMarker.position = originLocation.coordinate
             originMarker.title = "Départ"
@@ -99,8 +100,9 @@ class WaitingCourseController: UIViewController {
     /* -------------------------------------------------------------------------------------- */
     
     func abortCourse(){
+        courseActive.setId_statut(id_statut: 5)
+        courseActive.updateStatut()
         navigationController?.popToRootViewController(animated: true)
-        // todo remove from bdd
     }
     
 }
