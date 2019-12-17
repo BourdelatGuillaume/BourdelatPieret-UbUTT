@@ -4,6 +4,8 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>La localisation GPS de votre appareil est uniquement utilisée pour vous éviter la saisie du point de départ.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>L&apos;utilisation de la librairie d&apos;image permet simplement de sélectionner une image en tant qu&apos;image de profil.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

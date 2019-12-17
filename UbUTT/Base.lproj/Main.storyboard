@@ -459,6 +459,14 @@
                                     <action selector="onClickSave:" destination="mq1-8b-zGZ" eventType="touchDown" id="q2C-sN-t6B"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkJ-1p-9WS">
+                                <rect key="frame" x="129" y="221" width="117" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Changer d'image"/>
+                                <connections>
+                                    <action selector="onClickChangeImage:" destination="mq1-8b-zGZ" eventType="touchDown" id="Ngp-ew-v8r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fCK-Q9-Jb1"/>
