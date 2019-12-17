@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import GoogleMapsBase
 
 class WorkActivityControllerViewController: UIViewController {
 
     public static let segueIdentifier: String = "segueBetweenWorkAndHome"
     
     var user: Utilisateur!
+    var lastLocation: CLLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,7 @@ class WorkActivityControllerViewController: UIViewController {
         if segue.identifier == WorkTableViewController.segueIdentifier {
             let vc = segue.destination as? WorkTableViewController
             vc?.user = self.user.getConducteur()
+            vc?.lastLocation = self.lastLocation
         }
     }
 

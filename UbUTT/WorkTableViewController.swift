@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import GoogleMapsBase
 
 class WorkTableViewController: UITableViewController {
 
     public static let segueIdentifier: String = "segueBetweenWorkActivityAndWorkTable"
-    var user:Conducteur?
+    var user: Conducteur!
+    var lastLocation: CLLocation!
     
     var courses: [Course] = [Course]()
+    var selectedCourse: Course!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +49,25 @@ class WorkTableViewController: UITableViewController {
         cell.labelDestination.text = "100 m" // c'est la distance
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedCourse = courses[indexPath.row]
+        selectedCourse.setId_statut(id_statut: 2)
+        selectedCourse.setId_conducteur(id_conducteur: (user?.getId_conducteur())!)
+        selectedCourse.setPosition_conducteur(position_conducteur: String(lastLocation.coordinate.latitude)+","+String(lastLocation.coordinate.longitude))
+        selectedCourse.updatePosition_conducteur()
+        selectedCourse.updateId_conducteur()
+        selectedCourse.updateStatut()
+        performSegue(withIdentifier: ConducteurActivityController.segueIdentifier, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.destination is ConducteurActivityController{
+            let vc = segue.destination as? ConducteurActivityController
+            vc?.user = user
+            vc?.course = selectedCourse
+        }
     }
 
 }

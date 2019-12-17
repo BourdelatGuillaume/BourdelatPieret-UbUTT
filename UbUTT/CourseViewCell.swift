@@ -16,7 +16,7 @@ class CourseViewCell: UITableViewCell {
     @IBOutlet weak var labelDestination: UILabel!
     
     @IBAction func onTakeCoursePressed(_ sender: UIButton) {
-        // todo
+        
     }
     
     override func awakeFromNib() {

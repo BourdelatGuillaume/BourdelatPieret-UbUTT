@@ -152,6 +152,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
         if segue.destination is WorkActivityControllerViewController{
             let vc = segue.destination as? WorkActivityControllerViewController
             vc?.user = self.user
+            vc?.lastLocation = self.location
         }
     }
     

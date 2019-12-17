@@ -11,6 +11,9 @@
 		891A771423A8DBB1002C1B9C /* WorkActivityControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891A771323A8DBB1002C1B9C /* WorkActivityControllerViewController.swift */; };
 		891A771623A8DCFE002C1B9C /* CourseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891A771523A8DCFE002C1B9C /* CourseViewCell.swift */; };
 		891A771823A8DD82002C1B9C /* WorkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891A771723A8DD82002C1B9C /* WorkTableViewController.swift */; };
+		891A771A23A8E6CB002C1B9C /* EventCourseRunnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891A771923A8E6CB002C1B9C /* EventCourseRunnable.swift */; };
+		891A771C23A8F0CD002C1B9C /* local_taxi_black_24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = 891A771B23A8F0CD002C1B9C /* local_taxi_black_24x24.png */; };
+		891A771E23A8FA4B002C1B9C /* ConducteurActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891A771D23A8FA4B002C1B9C /* ConducteurActivityController.swift */; };
 		892B6BF52398ED5700C481C7 /* HomeActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B6BF42398ED5700C481C7 /* HomeActivityController.swift */; };
 		892B6BF82398F17900C481C7 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892B6BF72398F17900C481C7 /* GoogleMapsBase.framework */; };
 		892B6BFB2398F19400C481C7 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892B6BF92398F18B00C481C7 /* GoogleMaps.framework */; };
@@ -80,6 +83,9 @@
 		891A771323A8DBB1002C1B9C /* WorkActivityControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkActivityControllerViewController.swift; sourceTree = "<group>"; };
 		891A771523A8DCFE002C1B9C /* CourseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewCell.swift; sourceTree = "<group>"; };
 		891A771723A8DD82002C1B9C /* WorkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTableViewController.swift; sourceTree = "<group>"; };
+		891A771923A8E6CB002C1B9C /* EventCourseRunnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCourseRunnable.swift; sourceTree = "<group>"; };
+		891A771B23A8F0CD002C1B9C /* local_taxi_black_24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = local_taxi_black_24x24.png; sourceTree = "<group>"; };
+		891A771D23A8FA4B002C1B9C /* ConducteurActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConducteurActivityController.swift; sourceTree = "<group>"; };
 		892B6BF42398ED5700C481C7 /* HomeActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeActivityController.swift; sourceTree = "<group>"; };
 		892B6BF72398F17900C481C7 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		892B6BF92398F18B00C481C7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
@@ -201,6 +207,7 @@
 		892B6C26239911EB00C481C7 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				891A771B23A8F0CD002C1B9C /* local_taxi_black_24x24.png */,
 				891A771123A8DA70002C1B9C /* view_list_black_36x36.png */,
 				8FC09A2923A406C300FACC9A /* star_unselected.png */,
 				8945948D23A2480700E7933B /* person_pin_circle_black_24x24.png */,
@@ -267,6 +274,7 @@
 				891A771323A8DBB1002C1B9C /* WorkActivityControllerViewController.swift */,
 				891A771523A8DCFE002C1B9C /* CourseViewCell.swift */,
 				891A771723A8DD82002C1B9C /* WorkTableViewController.swift */,
+				891A771D23A8FA4B002C1B9C /* ConducteurActivityController.swift */,
 			);
 			path = UbUTT;
 			sourceTree = "<group>";
@@ -294,6 +302,7 @@
 				8F0F35E1239A9D1C00072764 /* SQLiteConnection.swift */,
 				8953F892239FA25D00C8188A /* isAbleToReceiveData.swift */,
 				8945948923A23BC000E7933B /* HaversineCalculator.swift */,
+				891A771923A8E6CB002C1B9C /* EventCourseRunnable.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -366,6 +375,7 @@
 				891A771223A8DA70002C1B9C /* view_list_black_36x36.png in Resources */,
 				8F5F308423A2240700F945AD /* star.png in Resources */,
 				898C1211238D1EC700B187AC /* Assets.xcassets in Resources */,
+				891A771C23A8F0CD002C1B9C /* local_taxi_black_24x24.png in Resources */,
 				898C120F238D1EB900B187AC /* Main.storyboard in Resources */,
 				892B6C002398F2B900C481C7 /* GoogleMaps.bundle in Resources */,
 				8953F881239F99B400C8188A /* GooglePlaces.bundle in Resources */,
@@ -409,9 +419,11 @@
 				8F13862923990F53002E65C3 /* UtilisateurConnection.swift in Sources */,
 				8F3FAECA238D50F3004D93C6 /* Conducteur.swift in Sources */,
 				89459677238FBB1500478C78 /* BDConnection.swift in Sources */,
+				891A771E23A8FA4B002C1B9C /* ConducteurActivityController.swift in Sources */,
 				8953F895239FAFAA00C8188A /* ConfirmCourseController.swift in Sources */,
 				8FC09A2823A4053E00FACC9A /* NoteController.swift in Sources */,
 				892B6C282399141300C481C7 /* CreateCourseActivityController.swift in Sources */,
+				891A771A23A8E6CB002C1B9C /* EventCourseRunnable.swift in Sources */,
 				8945948A23A23BC000E7933B /* HaversineCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

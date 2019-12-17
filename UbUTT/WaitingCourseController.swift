@@ -1,5 +1,5 @@
 //
-//  WaitingCourseController.swift
+//  WaitingcourseActiveController.swift
 //  UbUTT
 //
 //  Created by if26-grp3 on 12/12/2019.
@@ -11,8 +11,8 @@ import GoogleMaps
 
 class WaitingCourseController: UIViewController {
 
-    @IBAction func cancelCourse(_ sender: UIButton) {
-        abortCourse()
+    @IBAction func cancelcourseActive(_ sender: UIButton) {
+        abortcourseActive()
     }
     
     @IBOutlet weak var map: GMSMapView!
@@ -23,10 +23,14 @@ class WaitingCourseController: UIViewController {
     
     var user: Utilisateur!
     var courseActive: Course!
+    var eventRunnable: EventCourseRunnable?
     
     var timer: Timer?
     var minute: Int = 0
     var second: Int = 0
+    
+    var conducteurDejaEnChemin = false
+    var conducteurMarker: GMSMarker = GMSMarker()
     
     @IBOutlet weak var timerView: UILabel!
     
@@ -48,6 +52,42 @@ class WaitingCourseController: UIViewController {
             destinationMarker.title = "Destination"
             destinationMarker.icon = UIImage(named: "flag_black_27x27.png")
             destinationMarker.map = map
+            
+            conducteurMarker.title = "Conducteur"
+            conducteurMarker.icon = UIImage(named: "local_taxi_black_24x24.png")
+            conducteurMarker.map = map
+            
+            eventRunnable = EventCourseRunnable(user:user){ courseActive, error in
+                if(error != ""){
+                    print(error)
+                }else{
+                    switch(courseActive.getId_statut()){
+                    case 2: // conducteur en chemin
+                        if(!self.conducteurDejaEnChemin){
+                            self.conducteurDejaEnChemin = true
+                            self.timer?.invalidate()
+                            self.second = 0
+                            self.minute = 0
+                        }
+                        
+                        let tmpArray = courseActive.getPosition_conducteur().split(separator: ",", maxSplits: 2)
+                        let conducteurLocation = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
+                        self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
+                        
+                        let result:Double = HaversineCalculator.calculateDistance(p1: self.originLocation.coordinate, p2: conducteurLocation)
+                        
+                        if (result < 20) { // distance between conducteur and origin location is less than 20 meters
+                            self.courseActive.setId_statut(id_statut: 3)
+                            self.courseActive.updateStatut()
+                            self.originMarker.map = nil
+                        }
+                        break;
+                    default:
+                        print("wrong id_statut")
+                        break;
+                    }
+                }
+            }
         } else {
             self.dismiss(animated: true)
         }
@@ -77,7 +117,7 @@ class WaitingCourseController: UIViewController {
     }
 
     @objc func back(sender: UIBarButtonItem){
-        abortCourse()
+        abortcourseActive()
     }
     
     /* -------------------------------------------------------------------------------------- */
@@ -92,14 +132,19 @@ class WaitingCourseController: UIViewController {
         }else if(abs(origin.latitude-destination.latitude) > 0.01 || abs(origin.longitude-destination.longitude) > 0.005){
             zoomToUse = Constants.TOWN_ZOOM;
         }
-        map.animate(to: GMSCameraPosition.camera(withLatitude: abs(origin.latitude+destination.latitude)/2, longitude: abs(origin.longitude+destination.longitude)/2, zoom: zoomToUse))
+        self.map.animate(to: GMSCameraPosition.camera(withLatitude: abs(origin.latitude+destination.latitude)/2, longitude: abs(origin.longitude+destination.longitude)/2, zoom: zoomToUse))
+    }
+    
+    func updateConducteurMarker(conducteurLatLng:CLLocationCoordinate2D){
+        self.conducteurMarker.position = conducteurLatLng
+        self.updateCameraBetween2Points(origin: self.originLocation.coordinate, destination: conducteurLatLng)
     }
     
     /* FIN MAP */
     
     /* -------------------------------------------------------------------------------------- */
     
-    func abortCourse(){
+    func abortcourseActive(){
         courseActive.setId_statut(id_statut: 5)
         courseActive.updateStatut()
         navigationController?.popToRootViewController(animated: true)

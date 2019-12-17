@@ -135,6 +135,20 @@ public class Course:Entity{
         req.executerNoResult()
     }
     
+    public func updatePosition_conducteur() {
+        let req:SQLRequest = SQLRequest()
+        req.prepare(requete: "UPDATE COURSE SET POSITION_CONDUCTEUR = ? WHERE ID_COURSE=?");
+        req.addParametres(parametre:[String(self.position_conducteur),String(self.id_course)])
+        req.executerNoResult()
+    }
+    
+    public func updateId_conducteur() {
+        let req:SQLRequest = SQLRequest()
+        req.prepare(requete: "UPDATE COURSE SET ID_CONDUCTEUR = ? WHERE ID_COURSE=?");
+        req.addParametres(parametre:[String(self.id_conducteur),String(self.id_course)])
+        req.executerNoResult()
+    }
+    
     public func getId_course() -> Int{
         return id_course
     }
