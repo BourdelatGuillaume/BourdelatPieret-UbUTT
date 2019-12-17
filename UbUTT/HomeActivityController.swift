@@ -37,6 +37,8 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
     private var location:CLLocation!
     
     var user:Utilisateur?
+    var eventRunnable: EventCourseRunnable?
+    var courseActive:Course?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,22 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
             }
             textMenuNameUser.text=user!.getNom_utilisateur()+" "+user!.getPrenom_utilisateur()
             textMenuNoteUser.text = String(format:"%.1f", user!.getNoteUtilisateur())
+            
+            eventRunnable = EventCourseRunnable(user:user!){ courseActive, error in
+                if(error != ""){
+                    print(error)
+                }else{
+                    self.courseActive = courseActive
+                    switch(courseActive.getId_statut()){
+                    case 4:
+                        self.performSegue(withIdentifier: "segueNoteCourse", sender: nil)
+                        break;
+                    default:
+                        print("wrong id_statut")
+                        break;
+                    }
+                }
+            }
         }
     }
     
@@ -155,6 +173,12 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
             let vc = segue.destination as? WorkActivityControllerViewController
             vc?.user = self.user
             vc?.lastLocation = self.location
+        }
+        if segue.destination is NoteController{
+            let vc = segue.destination as? NoteController
+            vc?.user = self.user
+            vc?.course = self.courseActive
+            vc?.delegate = self
         }
     }
     
