@@ -22,8 +22,17 @@ class ParametresController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if (user != nil) {
+            let userImage:Image?  = user!.getImage()
+            if (userImage != nil ) {
+                if(userImage!.getImage() != nil){
+                    image.image = userImage!.getImage()
+                }
+            } else {
+                image.backgroundColor = UIColor.gray
+            }
+        }
     }
     
 
@@ -31,9 +40,12 @@ class ParametresController: UIViewController {
     }
     
     @IBAction func onClickSave(_ sender: UIButton) {
+        save.isEnabled=false
+        upload()
     }
     
     @IBAction func onEditNom(_ sender: UITextField) {
+        save.isEnabled=true
     }
     @IBAction func onEditPrenom(_ sender: UITextField) {
     }
@@ -43,6 +55,19 @@ class ParametresController: UIViewController {
     }
     @IBAction func onEditPass(_ sender: UITextField) {
     }
+    
+    public func upload(){
+        let userImage:Image = Image()
+        userImage.setImage(image: image.image!)
+        userImage.upload()
+        if(userImage.getId_image() != 0){
+            let req:SQLRequest = SQLRequest();
+            req.prepare(requete: "UPDATE UTILISATEUR SET ID_IMAGE= ? WHERE ID_UTILISATEUR = ?");
+            req.addParametres(parametre: [String(userImage.getId_image()), String(self.user!.getId_utilisateur())]);
+            req.executerNoResult();
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -68,6 +68,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
     }
     
     @IBAction func onClickParametre(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueParametresUser", sender: nil)
     }
     
     @IBAction func onClickHistory(_ sender: UIButton) {
