@@ -17,21 +17,43 @@ class ConducteurActivityController: UIViewController {
     var location:CLLocation!
     var user:Conducteur!
     var course:Course!
+    var destinationLoc:CLLocationCoordinate2D!
     
     @IBOutlet weak var map: GMSMapView!
     var conducteurMarker: GMSMarker = GMSMarker()
+    var passagerMarker: GMSMarker = GMSMarker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         map.isUserInteractionEnabled = false
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         conducteurMarker.title = "Conducteur"
         conducteurMarker.icon = UIImage(named: "local_taxi_black_24x24.png")
         conducteurMarker.map = map
         
+        passagerMarker.title = "Passager"
+        passagerMarker.icon = UIImage(named: "person_pin_circle_black_24x24.png")
+        let tmpArray = course.getPoint_depart().split(separator: ",", maxSplits: 2)
+        passagerMarker.position = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
+        passagerMarker.map = map
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let tmpArray = course.getPoint_arrivee().split(separator: ",", maxSplits: 2)
-        let destination = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
-        updateConducteurMarker(destinationLoc: destination)
+        destinationLoc = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
+        updateConducteurMarker()
+        
+        locationManager.delegate = self
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways){
+            locationManager.startUpdatingLocation()
+        }else{
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        locationManager.stopUpdatingLocation()
     }
 
     /* -------------------------------------------------------------------------------------- */
@@ -49,7 +71,7 @@ class ConducteurActivityController: UIViewController {
         map.animate(to: GMSCameraPosition.camera(withLatitude: abs(origin.latitude+destination.latitude)/2, longitude: abs(origin.longitude+destination.longitude)/2, zoom: zoomToUse))
     }
     
-    func updateConducteurMarker(destinationLoc: CLLocationCoordinate2D){
+    func updateConducteurMarker(){
         conducteurMarker.position = location.coordinate
         updateCameraBetween2Points(origin: location.coordinate, destination: destinationLoc)
     }
@@ -83,6 +105,7 @@ extension ConducteurActivityController: CLLocationManagerDelegate {
         // .requestLocation will only pass one location to the locations array hence we can access it by taking the first element of the array
         if let loc = locations.first {
             self.location = loc
+            updateConducteurMarker()
         }
     }
     

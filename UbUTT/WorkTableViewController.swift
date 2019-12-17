@@ -47,12 +47,14 @@ class WorkTableViewController: UITableViewController {
         
         cell.labelPrix.text = String(format: "%.0f€", course.getPrix_estime())
         cell.labelDestination.text = "100 m" // c'est la distance
+        cell.takeButton.tag = indexPath.row
+        cell.takeButton.addTarget(self, action: #selector(courseSelected(_:)), for: .touchUpInside)
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedCourse = courses[indexPath.row]
+    @objc func courseSelected(_ sender: UIButton){
+        selectedCourse = courses[sender.tag]
         selectedCourse.setId_statut(id_statut: 2)
         selectedCourse.setId_conducteur(id_conducteur: (user?.getId_conducteur())!)
         selectedCourse.setPosition_conducteur(position_conducteur: String(lastLocation.coordinate.latitude)+","+String(lastLocation.coordinate.longitude))
@@ -67,6 +69,7 @@ class WorkTableViewController: UITableViewController {
             let vc = segue.destination as? ConducteurActivityController
             vc?.user = user
             vc?.course = selectedCourse
+            vc?.location = lastLocation
         }
     }
 

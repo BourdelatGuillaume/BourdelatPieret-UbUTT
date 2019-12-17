@@ -14,10 +14,7 @@ class CourseViewCell: UITableViewCell {
     
     @IBOutlet weak var labelPrix: UILabel!
     @IBOutlet weak var labelDestination: UILabel!
-    
-    @IBAction func onTakeCoursePressed(_ sender: UIButton) {
-        
-    }
+    @IBOutlet weak var takeButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,8 +11,8 @@ import GoogleMaps
 
 class WaitingCourseController: UIViewController {
 
-    @IBAction func cancelcourseActive(_ sender: UIButton) {
-        abortcourseActive()
+    @IBAction func cancelCourseActive(_ sender: UIButton) {
+        abortCourseActive()
     }
     
     @IBOutlet weak var map: GMSMapView!
@@ -114,10 +114,11 @@ class WaitingCourseController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         timer?.invalidate()
+        eventRunnable?.stop()
     }
 
     @objc func back(sender: UIBarButtonItem){
-        abortcourseActive()
+        abortCourseActive()
     }
     
     /* -------------------------------------------------------------------------------------- */
@@ -144,7 +145,7 @@ class WaitingCourseController: UIViewController {
     
     /* -------------------------------------------------------------------------------------- */
     
-    func abortcourseActive(){
+    func abortCourseActive(){
         courseActive.setId_statut(id_statut: 5)
         courseActive.updateStatut()
         navigationController?.popToRootViewController(animated: true)

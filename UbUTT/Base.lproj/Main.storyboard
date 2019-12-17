@@ -976,7 +976,7 @@
             <objects>
                 <viewController id="bnN-0T-itv" customClass="ConducteurActivityController" customModule="UbUTT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WIf-D6-YRj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="580"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nn-hH-glg" customClass="GMSMapView">
@@ -1156,9 +1156,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ysM-UZ-MKJ"/>
                     </view>
-                    <connections>
-                        <segue destination="bnN-0T-itv" kind="show" identifier="segueBetweenWorkAndConducteurCourse" id="Azz-pp-FmU"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4kz-gw-dVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1204,6 +1201,7 @@
                                 <connections>
                                     <outlet property="labelDestination" destination="kNV-pc-Gpr" id="Sth-6C-f3e"/>
                                     <outlet property="labelPrix" destination="68M-ps-8QK" id="b41-5G-bxy"/>
+                                    <outlet property="takeButton" destination="5fi-Ye-sqG" id="GUF-4y-rcl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1212,6 +1210,9 @@
                             <outlet property="delegate" destination="f7j-nC-CpQ" id="dQf-kE-S7L"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="bnN-0T-itv" kind="show" identifier="segueBetweenWorkAndConducteurCourse" id="9yw-xS-lTD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FpA-He-J6y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
