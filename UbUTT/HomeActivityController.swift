@@ -145,6 +145,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
         if segue.destination is ParametresController{
             let vc = segue.destination as? ParametresController
             vc?.user = self.user
+            vc?.delegate = self
         }
         if segue.destination is NoteController{
             let vc = segue.destination as? NoteController
@@ -159,6 +160,8 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
     
     func pass(data: Utilisateur) {
         self.user = data
+        textMenuNameUser.text=user!.getNom_utilisateur()+" "+user!.getPrenom_utilisateur()
+        textMenuNoteUser.text = String(format:"%.1f", user!.getNoteUtilisateur())
     }
 }
 /* LOCATION MANAGER */

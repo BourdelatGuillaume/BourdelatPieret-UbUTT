@@ -70,6 +70,10 @@ public class Utilisateur : Entity{
         return self.image
     }
     
+    public func setImage(image:Image){
+        self.image=image
+    }
+    
     
     public func getConducteur() -> Conducteur?{
         if(self.conducteur == nil){
@@ -124,41 +128,41 @@ public class Utilisateur : Entity{
         req.executerNoResult()
     }
     
-    /*public func updateEmail(context:Context) -> Bool{
-        UtilisateurConnection uc = new UtilisateurConnection(context)
-        if(!uc.alreadyExistEmail(self.adresse_email)) {
-            SQLRequest req = new SQLRequest()
-            req.prepare("UPDATE UTILISATEUR SET ADRESSE_EMAIL = ? WHERE ID_UTILISATEUR=?")
-            req.addParametres(new String[]{self.adresse_email, String.valueOf(self.id_utilisateur)})
+    public func updateEmail() -> Bool{
+        let uc:UtilisateurConnection = UtilisateurConnection()
+        if(!uc.alreadyExistEmail(email: self.adresse_email)) {
+            let req:SQLRequest  = SQLRequest()
+            req.prepare(requete: "UPDATE UTILISATEUR SET ADRESSE_EMAIL = ? WHERE ID_UTILISATEUR=?")
+            req.addParametres(parametre: [self.adresse_email, String(self.id_utilisateur)])
             req.executerNoResult()
             return true
         } else {
             return false
         }
-    }*/
+    }
     
-    /*public func updateTel(context:Context) -> Bool{
-        UtilisateurConnection uc = new UtilisateurConnection(context)
-        if(!uc.alreadyExistTel(self.num_telephone)) {
-            SQLRequest req = new SQLRequest()
-            req.prepare("UPDATE UTILISATEUR SET NUM_TELEPHONE = ? WHERE ID_UTILISATEUR=?")
-            req.addParametres(new String[]{self.num_telephone, String.valueOf(self.id_utilisateur)})
+    public func updateTel() -> Bool{
+        let uc:UtilisateurConnection = UtilisateurConnection()
+        if(!uc.alreadyExistTel(tel: self.num_telephone)) {
+            let req:SQLRequest  = SQLRequest()
+            req.prepare(requete: "UPDATE UTILISATEUR SET NUM_TELEPHONE = ? WHERE ID_UTILISATEUR=?")
+            req.addParametres(parametre: [self.num_telephone, String(self.id_utilisateur)])
             req.executerNoResult()
-            uc.updateTelSQLite(self.num_telephone,self.id_utilisateur)
+            uc.updateTelSQLite(tel: self.num_telephone,id: self.id_utilisateur)
             return true
         } else {
             return false
         }
-    }*/
+    }
     
-    /*public func updatePassword(Context context) -> Void{
-        UtilisateurConnection uc = new UtilisateurConnection(context)
-        SQLRequest req = new SQLRequest()
-        req.prepare("UPDATE UTILISATEUR SET PASSWORD = ? WHERE ID_UTILISATEUR=?")
-        req.addParametres(new String[]{self.password, String.valueOf(self.id_utilisateur)})
+    public func updatePassword() -> Void{
+        let uc:UtilisateurConnection = UtilisateurConnection()
+        let req:SQLRequest  = SQLRequest()
+        req.prepare(requete: "UPDATE UTILISATEUR SET PASSWORD = ? WHERE ID_UTILISATEUR=?")
+        req.addParametres(parametre: [self.password, String(self.id_utilisateur)])
         req.executerNoResult()
-        uc.updatePasswordSQLite(self.password,self.id_utilisateur)
-    }*/
+        uc.updatePasswordSQLite(password: self.password,id: self.id_utilisateur)
+    }
     
     /*
      Update user without checking the data

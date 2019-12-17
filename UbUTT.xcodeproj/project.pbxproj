@@ -62,6 +62,7 @@
 		8F3FAECE238D5494004D93C6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3FAECD238D5494004D93C6 /* Image.swift */; };
 		8F3FAED0238D56BA004D93C6 /* MainActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3FAECF238D56BA004D93C6 /* MainActivityController.swift */; };
 		8F54C0E823A8DFCA00DAD6FB /* ImageUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C0E723A8DFCA00DAD6FB /* ImageUpload.swift */; };
+		8F54C0EA23A8EE9000DAD6FB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C0E923A8EE9000DAD6FB /* ImagePicker.swift */; };
 		8F5F308023A2240700F945AD /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F5F307B23A2240700F945AD /* logout.png */; };
 		8F5F308123A2240700F945AD /* cle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F5F307C23A2240700F945AD /* cle.png */; };
 		8F5F308223A2240700F945AD /* menu_hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F5F307D23A2240700F945AD /* menu_hamburger.png */; };
@@ -134,6 +135,7 @@
 		8F3FAECD238D5494004D93C6 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		8F3FAECF238D56BA004D93C6 /* MainActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActivityController.swift; sourceTree = "<group>"; };
 		8F54C0E723A8DFCA00DAD6FB /* ImageUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUpload.swift; sourceTree = "<group>"; };
+		8F54C0E923A8EE9000DAD6FB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		8F5F307B23A2240700F945AD /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		8F5F307C23A2240700F945AD /* cle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cle.png; sourceTree = "<group>"; };
 		8F5F307D23A2240700F945AD /* menu_hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_hamburger.png; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				8953F892239FA25D00C8188A /* isAbleToReceiveData.swift */,
 				8945948923A23BC000E7933B /* HaversineCalculator.swift */,
 				8F54C0E723A8DFCA00DAD6FB /* ImageUpload.swift */,
+				8F54C0E923A8EE9000DAD6FB /* ImagePicker.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				8953F891239F9E9E00C8188A /* DestinationPickerController.swift in Sources */,
 				8FC09A2223A3FB6300FACC9A /* HistoricTableViewController.swift in Sources */,
 				8F5F308623A234AA00F945AD /* PoliticController.swift in Sources */,
+				8F54C0EA23A8EE9000DAD6FB /* ImagePicker.swift in Sources */,
 				8F3FAED0238D56BA004D93C6 /* MainActivityController.swift in Sources */,
 				8F1386272398F92F002E65C3 /* Entity.swift in Sources */,
 				8F0AF8AE23A3E68600384A98 /* HistoricViewCell.swift in Sources */,
