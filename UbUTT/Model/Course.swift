@@ -86,17 +86,23 @@ public class Course:Entity{
         return self.statut
     }
     
+    public static func getAvailableCoursesForConducteur(user:Conducteur) -> [Course] {
+        let req:SQLRequest<Course> = SQLRequest()
+    req.prepare(requete:"SELECT * FROM COURSE WHERE ID_STATUT = ? AND ID_PASSAGER <> ?");
+        req.addParametres(parametre: ["1", String(user.getId_utilisateur())]);
+        return req.executerMultipleResult();
+    }
+    
     public static func createInBD(id_utilisateur:Int, depart_lat:Double, depart_lng:Double, arrivee_lat:Double, arrivee_lng:Double, distance:Double) -> Course?{
-        let now = Date()
         let format = DateFormatter()
         format.dateFormat = "yyyy-MM-dd"
-        let date:String = format.string(from:now)
         let req:SQLRequest = SQLRequest()
-        req.prepare(requete:"INSERT INTO COURSE(ID_PASSAGER, DATE, POINT_DEPART, POINT_ARRIVEE, PRIX_ESTIME) VALUES(?,?,?,?,?)")
-        req.addParametres(parametre: [String(id_utilisateur),date,"\(depart_lat),\(depart_lng)","\(arrivee_lat),\(arrivee_lng)", String(0.1*distance)])
+        req.prepare(requete:"INSERT INTO COURSE(ID_PASSAGER, POINT_DEPART, POINT_ARRIVEE, PRIX_ESTIME) VALUES(?,?,?,?)")
+        req.addParametres(parametre: [String(id_utilisateur),"\(depart_lat),\(depart_lng)","\(arrivee_lat),\(arrivee_lng)", String(Constants.pricePerMeter*distance)])
+        req.executerNoResult()
         let reqID:SQLRequest<Course> = SQLRequest()
-        reqID.prepare(requete:"SELECT * FROM COURSE WHERE ID_PASSAGER, DATE, POINT_DEPART, POINT_ARRIVEE) VALUES(?,?,?,?)")
-        reqID.addParametres(parametre: [String(id_utilisateur),date,"\(depart_lat),\(depart_lng)","\(arrivee_lat),\(arrivee_lng)"])
+        reqID.prepare(requete:"SELECT * FROM COURSE WHERE ID_PASSAGER=? AND POINT_DEPART=? AND POINT_ARRIVEE=?")
+        reqID.addParametres(parametre: [String(id_utilisateur),"\(depart_lat),\(depart_lng)","\(arrivee_lat),\(arrivee_lng)"])
         return reqID.executerOneResult()
     }
     

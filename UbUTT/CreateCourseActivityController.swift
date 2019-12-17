@@ -28,6 +28,10 @@ class CreateCourseActivityController: UIViewController, UIApplicationDelegate, G
         }
     }
     
+    @IBAction func onReturnPressed(_ sender: UIButton) {
+        self.navigationController?.dismiss(animated: true)
+    }
+    
     private var destBtnState = 0
     @IBOutlet weak var destOnMapButton: UIButton!
     @IBAction func onClickDestinationOnMap(_ sender: UIButton) {
@@ -86,6 +90,7 @@ class CreateCourseActivityController: UIViewController, UIApplicationDelegate, G
     
     override func viewDidAppear(_ animated: Bool) {
         updateLocationOnMap(location: location!)
+        super.viewDidAppear(animated)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -98,6 +103,7 @@ class CreateCourseActivityController: UIViewController, UIApplicationDelegate, G
             vc?.originLocation = location
             vc?.destinationLocation = destLocation
             vc?.user = user
+            vc?.map = map
         }
     }
     

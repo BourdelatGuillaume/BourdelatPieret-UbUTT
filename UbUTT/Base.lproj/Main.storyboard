@@ -155,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbK-l1-huj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-22" y="777"/>
+            <point key="canvasLocation" x="-740" y="743"/>
         </scene>
         <!--Politic Controller-->
         <scene sceneID="kek-aV-gUL">
@@ -253,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2I9-D9-zH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="932" y="780.35982008995506"/>
+            <point key="canvasLocation" x="92" y="743"/>
         </scene>
         <!--MainActivity-->
         <scene sceneID="90a-dK-MG8">
@@ -610,7 +610,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yr0-EO-JeD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1348" y="-743.47826086956525"/>
+            <point key="canvasLocation" x="1348" y="-744"/>
         </scene>
         <!--Historic Table View Controller-->
         <scene sceneID="eQf-3Q-OZn">
@@ -825,6 +825,18 @@
                                             <action selector="onClickDisconnect:" destination="uTw-g1-bY7" eventType="touchDown" id="ExT-qH-X7K"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xO9-eN-M0q">
+                                        <rect key="frame" x="0.0" y="199" width="297" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <inset key="imageEdgeInsets" minX="-41" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Courses disponibles" image="view_list_black_36x36.png">
+                                            <color key="titleColor" red="0.23419898759999999" green="0.38780046350000003" blue="0.80108484459999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onCoursesDisposPressed:" destination="uTw-g1-bY7" eventType="touchDown" id="Jku-B0-OeI"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -839,6 +851,7 @@
                     </view>
                     <connections>
                         <outlet property="btMenuDriver" destination="j6m-GH-nNH" id="eIj-m6-PUw"/>
+                        <outlet property="btnCoursesDispos" destination="xO9-eN-M0q" id="zY0-op-O8H"/>
                         <outlet property="map" destination="NQp-Da-xtR" id="Bwf-n0-nnC"/>
                         <outlet property="menuHamburger" destination="L2h-4R-Sqb" id="pIf-57-Olp"/>
                         <outlet property="menuHamburgerNoir" destination="Y4M-Rd-kcM" id="38V-KO-78z"/>
@@ -853,13 +866,14 @@
                         <segue destination="xRi-qW-gan" kind="show" identifier="segueHistoric" id="fxA-3z-hXA"/>
                         <segue destination="mq1-8b-zGZ" kind="show" identifier="segueParametresUser" id="GHr-ah-4MG"/>
                         <segue destination="gYi-oK-wki" kind="show" identifier="segueNoteCourse" id="q6J-R2-iom"/>
+                        <segue destination="lNS-9l-660" kind="show" identifier="segueBetweenWorkAndHome" id="BsN-Lc-WmH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5in-2A-NcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="613.60000000000002" y="-30.134932533733135"/>
+            <point key="canvasLocation" x="1054" y="-31"/>
         </scene>
-        <!--Votre course-->
+        <!--Ma Course-->
         <scene sceneID="lSy-0F-Fbg">
             <objects>
                 <viewController id="C0d-7z-0zU" customClass="CreateCourseActivityController" customModule="UbUTT" customModuleProvider="target" sceneMemberID="viewController">
@@ -868,7 +882,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sxG-Vn-fPy" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="203" width="375" height="464"/>
+                                <rect key="frame" x="0.0" y="248" width="375" height="419"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <color key="backgroundColor" red="0.81649993529999998" green="1" blue="0.82276326030000002" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -886,7 +900,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chargement en cours..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rBC-fn-cCe">
-                                <rect key="frame" x="16" y="97" width="343" height="30"/>
+                                <rect key="frame" x="16" y="136" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.90909706218255004" green="0.90909706218255004" blue="0.90909706218255004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Technopole de l'Aube">
@@ -898,14 +912,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lieu de départ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJv-jq-nJU">
-                                <rect key="frame" x="16" y="76" width="111" height="21"/>
+                                <rect key="frame" x="16" y="115" width="111" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Saisir une destination" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8XD-bK-ZsM">
-                                <rect key="frame" x="16" y="158" width="343" height="30"/>
+                                <rect key="frame" x="16" y="197" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -915,17 +929,26 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DP5-2L-GPt">
-                                <rect key="frame" x="16" y="135" width="87" height="21"/>
+                                <rect key="frame" x="16" y="174" width="87" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOa-Z7-oW9">
+                                <rect key="frame" x="10" y="77" width="131" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="&lt; Retour à l'accueil"/>
+                                <connections>
+                                    <action selector="onReturnPressed:" destination="MaH-Mt-DA1" eventType="touchDown" id="Be5-br-i4d"/>
+                                    <action selector="onReturnPressed:" destination="C0d-7z-0zU" eventType="touchDown" id="hM4-do-PqH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="0uv-es-ou0"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Votre course" id="Wi5-NM-p5X"/>
+                    <navigationItem key="navigationItem" title="Ma Course" id="Wze-GK-fT3"/>
                     <connections>
                         <outlet property="destOnMapButton" destination="gUE-Ra-kSr" id="mu1-zK-7wq"/>
                         <outlet property="map" destination="sxG-Vn-fPy" id="5gt-g8-US0"/>
@@ -936,8 +959,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E4X-gg-nCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="MaH-Mt-DA1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2442" y="-30"/>
+            <point key="canvasLocation" x="3466" y="-31"/>
         </scene>
         <!--Destination Picker Controller-->
         <scene sceneID="3R9-MH-UoN">
@@ -993,7 +1017,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NbY-Nd-Osq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2442" y="690"/>
+            <point key="canvasLocation" x="3466" y="689"/>
         </scene>
         <!--Note Controller-->
         <scene sceneID="qp2-5F-bgi">
@@ -1061,7 +1085,101 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GdF-Cr-my6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1680.8" y="967.4662668665668"/>
+            <point key="canvasLocation" x="916" y="743"/>
+        </scene>
+        <!--Work Activity Controller View Controller-->
+        <scene sceneID="3yG-mN-7Ri">
+            <objects>
+                <viewController id="lNS-9l-660" customClass="WorkActivityControllerViewController" customModule="UbUTT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d8l-oB-QNK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Courses disponibles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtQ-P7-VkG">
+                                <rect key="frame" x="0.0" y="20" width="375" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V3N-4B-PZv">
+                                <rect key="frame" x="0.0" y="87" width="375" height="580"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="f7j-nC-CpQ" kind="embed" identifier="segueBetweenWorkActivityAndWorkTable" id="MRd-k2-Jfk"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TqG-Mi-F5f">
+                                <rect key="frame" x="16" y="49" width="131" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="&lt; Retour à l'accueil"/>
+                                <connections>
+                                    <action selector="onBackPressed:" destination="lNS-9l-660" eventType="touchDown" id="yRW-50-eD2"/>
+                                    <action selector="onClickReturn:" destination="xRi-qW-gan" eventType="touchDown" id="cx1-6k-vLP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ysM-UZ-MKJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4kz-gw-dVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1792.8" y="607.64617691154433"/>
+        </scene>
+        <!--Work Table View Controller-->
+        <scene sceneID="kHo-NI-fVw">
+            <objects>
+                <tableViewController id="f7j-nC-CpQ" customClass="WorkTableViewController" customModule="UbUTT" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="grR-rl-chU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="580"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseViewCell" id="oYo-GF-U73" customClass="CourseViewCell" customModule="UbUTT" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oYo-GF-U73" id="YXy-xO-RFR">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68M-ps-8QK">
+                                            <rect key="frame" x="166" y="11" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fi-Ye-sqG">
+                                            <rect key="frame" x="328" y="8" width="31" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Prendre" image="play_arrow_grey_27x27.png"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNV-pc-Gpr">
+                                            <rect key="frame" x="38" y="11" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="labelDestination" destination="kNV-pc-Gpr" id="Sth-6C-f3e"/>
+                                    <outlet property="labelPrix" destination="68M-ps-8QK" id="b41-5G-bxy"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="f7j-nC-CpQ" id="u3k-ZP-oLJ"/>
+                            <outlet property="delegate" destination="f7j-nC-CpQ" id="dQf-kE-S7L"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FpA-He-J6y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1792.8" y="1269.265367316342"/>
         </scene>
         <!--Confirm Course Controller-->
         <scene sceneID="36V-ew-u0s">
@@ -1118,7 +1236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePE-q4-Jjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3336.8000000000002" y="-30.134932533733135"/>
+            <point key="canvasLocation" x="4362" y="-31"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="agm-ed-Avf">
@@ -1134,7 +1252,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWk-Nw-2MI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1542" y="-30"/>
+            <point key="canvasLocation" x="2567" y="-31"/>
         </scene>
         <!--Waiting Course Controller-->
         <scene sceneID="zxy-kO-6j2">
@@ -1181,7 +1299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Lf-i8-RBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4229.6000000000004" y="-30.134932533733135"/>
+            <point key="canvasLocation" x="5255" y="-31"/>
         </scene>
     </scenes>
     <resources>
@@ -1189,10 +1307,12 @@
         <image name="history.png" width="32" height="32"/>
         <image name="logout.png" width="34" height="32"/>
         <image name="menu_hamburger.png" width="27" height="27"/>
+        <image name="play_arrow_grey_27x27.png" width="27" height="27"/>
         <image name="star.png" width="820" height="789"/>
+        <image name="view_list_black_36x36.png" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S6l-Ge-hBR"/>
+        <segue reference="OWb-Gh-m6l"/>
         <segue reference="0nc-qV-dKp"/>
         <segue reference="sP6-2J-v1t"/>
     </inferredMetricsTieBreakers>

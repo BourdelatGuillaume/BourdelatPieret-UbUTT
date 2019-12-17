@@ -19,6 +19,10 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
     @IBOutlet weak var menuHamburgerNoir: UIView!
     @IBOutlet weak var menuHamburger: UIView!
     
+    @IBOutlet weak var btnCoursesDispos: UIButton!
+    @IBAction func onCoursesDisposPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: WorkActivityControllerViewController.segueIdentifier, sender: self)
+    }
     @IBOutlet weak var btMenuDriver: UIButton!
     @IBOutlet weak var textMenuNameUser: UILabel!
     @IBOutlet weak var textMenuNoteUser: UILabel!
@@ -49,8 +53,10 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
             
             if(user!.getConducteur() != nil){
                 btMenuDriver.isHidden = false
+                btnCoursesDispos.isHidden = false
             } else {
                 btMenuDriver.isHidden = true
+                btnCoursesDispos.isHidden = true
             }
             textMenuNameUser.text=user!.getNom_utilisateur()+" "+user!.getPrenom_utilisateur()
             textMenuNoteUser.text = String(format:"%.1f", user!.getNoteUtilisateur())
@@ -121,6 +127,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
             let vc = navVC?.topViewController as? CreateCourseActivityController
             vc?.user = self.user
             vc?.location = location
+            vc?.map = map
         }
         if segue.destination is PoliticController{
             let vc = segue.destination as? PoliticController
@@ -141,6 +148,10 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
         }
         if segue.destination is NoteController{
             let vc = segue.destination as? NoteController
+            vc?.user = self.user
+        }
+        if segue.destination is WorkActivityControllerViewController{
+            let vc = segue.destination as? WorkActivityControllerViewController
             vc?.user = self.user
         }
     }

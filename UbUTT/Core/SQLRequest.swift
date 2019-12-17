@@ -50,6 +50,7 @@ public class SQLRequest<E:Entity>{
                 return E.init(dictionary: jsonObject)
              } catch  {
                 print("error trying to convert data to JSON")
+                print(String(decoding:data!,as:UTF8.self))
                 return nil
              }
         }
