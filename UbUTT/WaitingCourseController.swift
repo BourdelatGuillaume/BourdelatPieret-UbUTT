@@ -75,6 +75,7 @@ class WaitingCourseController: UIViewController {
                         let conducteurLocation = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
                         DispatchQueue.main.async{
                             self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
+                            self.updateCameraBetween2Points(origin: self.originLocation.coordinate, destination: conducteurLocation)
                             self.timerView.isHidden = true
                             self.cancelButton.isHidden = true
                             self.map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -82,7 +83,7 @@ class WaitingCourseController: UIViewController {
                         
                         let result:Double = HaversineCalculator.calculateDistance(p1: self.originLocation.coordinate, p2: conducteurLocation)
                         
-                        if (result < 20) { // distance between conducteur and origin location is less than 20 meters
+                        if (result < 40) { // distance between conducteur and origin location is less than 40 meters
                             self.courseActive.setId_statut(id_statut: 3)
                             self.courseActive.updateStatut()
                             DispatchQueue.main.async{
@@ -90,16 +91,17 @@ class WaitingCourseController: UIViewController {
                             }
                         }
                         break;
-                    case 3:
+                    case 3: // course en cours
                         let tmpArray = courseActive.getPosition_conducteur().split(separator: ",", maxSplits: 2)
                         let conducteurLocation = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
                         DispatchQueue.main.async{
                             self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
+                            self.updateCameraBetween2Points(origin: self.destinationLocation.coordinate, destination: conducteurLocation)
                         }
                         
-                        let result:Double = HaversineCalculator.calculateDistance(p1: self.originLocation.coordinate, p2: conducteurLocation)
+                        let result:Double = HaversineCalculator.calculateDistance(p1: self.destinationLocation.coordinate, p2: conducteurLocation)
                         
-                        if (result < 20) { // distance between conducteur and destination location is less than 20 meters
+                        if (result < 40) { // distance between conducteur and destination location is less than 40 meters
                             self.courseActive.setId_statut(id_statut: 4)
                             self.courseActive.updateStatut()
                             self.eventRunnable?.stop()
@@ -163,7 +165,6 @@ class WaitingCourseController: UIViewController {
     
     func updateConducteurMarker(conducteurLatLng:CLLocationCoordinate2D){
         self.conducteurMarker.position = conducteurLatLng
-        self.updateCameraBetween2Points(origin: self.originLocation.coordinate, destination: conducteurLatLng)
     }
     
     /* FIN MAP */

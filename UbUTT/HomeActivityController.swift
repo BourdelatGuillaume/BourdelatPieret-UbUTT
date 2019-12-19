@@ -126,6 +126,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
         }else{
             locationManager.requestWhenInUseAuthorization()
         }
+        eventRunnable?.setPause(pause: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

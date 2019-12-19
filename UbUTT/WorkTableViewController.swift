@@ -74,6 +74,8 @@ class WorkTableViewController: UITableViewController {
         selectedCourse.updatePosition_conducteur()
         selectedCourse.updateId_conducteur()
         selectedCourse.updateStatut()
+        //courses.remove(at: sender.tag)
+        //self.tableView.reload
         performSegue(withIdentifier: ConducteurActivityController.segueIdentifier, sender: self)
     }
     

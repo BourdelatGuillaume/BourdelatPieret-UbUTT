@@ -25,6 +25,7 @@ class ConducteurActivityController: UIViewController {
     @IBOutlet weak var map: GMSMapView!
     var conducteurMarker: GMSMarker = GMSMarker()
     var passagerMarker: GMSMarker = GMSMarker()
+    var destinationMarker: GMSMarker = GMSMarker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +38,15 @@ class ConducteurActivityController: UIViewController {
         
         passagerMarker.title = "Passager"
         passagerMarker.icon = UIImage(named: "person_pin_circle_black_24x24.png")
-        let tmpArray = course.getPoint_depart().split(separator: ",", maxSplits: 2)
+        var tmpArray = course.getPoint_depart().split(separator: ",", maxSplits: 2)
         passagerMarker.position = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
         passagerMarker.map = map
+        
+        destinationMarker.title = "Destination"
+        destinationMarker.icon = UIImage(named: "flag_black_27x27.png")
+        tmpArray = course.getPoint_arrivee().split(separator: ",", maxSplits: 2)
+        destinationMarker.position = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
+        destinationMarker.map = map
         
         eventRunnable = EventCourseRunnable(user:user.getUtilisateur()!){ courseActive, error in
             if(error != ""){
@@ -50,14 +57,14 @@ class ConducteurActivityController: UIViewController {
                     self.updateLocationForCourse(course: courseActive)
                     break;
                 case 3: // course en cours
+                    DispatchQueue.main.async{
+                        self.destinationMarker.map = self.map
+                        self.passagerMarker.map = nil
+                    }
                     self.updateLocationForCourse(course: courseActive)
                     break;
                 case 4: // en attente des notes (on le rajoute car le passager passe la course en statut et bloque le conducteur du coup)
-                    let result:Double = HaversineCalculator.calculateDistance(p1: self.location.coordinate, p2: self.destinationLoc)
-                    
-                    if (result < 20) { // distance between conducteur and destination location is less than 20 meters
-                        self.dismiss(animated:true)
-                    }
+                    self.dismiss(animated:true)
                     break;
                 default:
                     print("wrong id_statut")
@@ -82,6 +89,7 @@ class ConducteurActivityController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         locationManager.stopUpdatingLocation()
+        eventRunnable?.stop()
     }
 
     /* -------------------------------------------------------------------------------------- */
