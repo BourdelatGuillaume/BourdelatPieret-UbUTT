@@ -70,10 +70,15 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
                     self.courseActive = courseActive
                     switch(courseActive.getId_statut()){
                     case 4:
-                        self.performSegue(withIdentifier: "segueNoteCourse", sender: nil)
+                        DispatchQueue.main.async {
+                            if((self.user!.getId_utilisateur() == self.courseActive!.getId_passager() && self.courseActive!.getNote_conducteur() == -1) ||
+                                (self.courseActive!.getConducteur()!.getId_utilisateur() == self.user!.getId_utilisateur() && self.courseActive!.getNote_passager() ==  -1)) {
+                                self.performSegue(withIdentifier: "segueNoteCourse", sender: nil)
+                            }
+                            
+                        }
                         break;
                     default:
-                        print("wrong id_statut")
                         break;
                     }
                 }
@@ -125,6 +130,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
     
     override func viewWillDisappear(_ animated: Bool) {
         locationManager.stopUpdatingLocation()
+        eventRunnable?.setPause(pause: true)    
     }
     
     /* -------------------------------------------------------------------------------------- */
@@ -145,7 +151,7 @@ class HomeActivityController : UIViewController, UIApplicationDelegate, isAbleTo
             let vc = navVC?.topViewController as? CreateCourseActivityController
             vc?.user = self.user
             vc?.location = location
-            vc?.map = map
+            vc?.map = map 
         }
         if segue.destination is PoliticController{
             let vc = segue.destination as? PoliticController

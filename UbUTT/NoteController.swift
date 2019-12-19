@@ -25,14 +25,15 @@ class NoteController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*if(user != null && this.course!=null){
-            if(user.getId_utilisateur()==this.course.getId_passager()){
-                Utilisateur userConducteur = course.getConducteur().getUtilisateur();
-                txt_nom.setText(getResources().getString(R.string.note_conducteur)+" "+userConducteur.getPrenom_utilisateur()+" "+userConducteur.getNom_utilisateur());
-            } else if(user.getConducteur().getId_conducteur()==this.course.getId_conducteur()){
-                Utilisateur userPassager = course.getPassager();
-                txt_nom.setText(getResources().getString(R.string.note_passager)+" "+userPassager.getPrenom_utilisateur()+" "+userPassager.getNom_utilisateur());
-            }*/
+        if(self.user != nil && self.course != nil){
+            if(self.user!.getId_utilisateur()==self.course!.getId_passager()){
+                let userConducteur:Utilisateur = course!.getConducteur()!.getUtilisateur()!
+                nom.text = "Notez le conducteur "+userConducteur.getPrenom_utilisateur()+" "+userConducteur.getNom_utilisateur()
+            } else if(self.user!.getConducteur()!.getId_conducteur()==self.course!.getId_conducteur()){
+                let userPassager:Utilisateur = self.course!.getPassager()!
+                nom.text = "Notez le passager "+userPassager.getPrenom_utilisateur()+" "+userPassager.getNom_utilisateur()
+            }
+        }
         
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.tapStar1))
         star1.addGestureRecognizer(tap1)
@@ -62,16 +63,16 @@ class NoteController: UIViewController {
             star1.image = UIImage(named: "star")
         }
         if(num>=2){
-            star1.image = UIImage(named: "star")
+            star2.image = UIImage(named: "star")
         }
         if(num>=3){
-            star1.image = UIImage(named: "star")
+            star3.image = UIImage(named: "star")
         }
         if(num>=4){
-            star1.image = UIImage(named: "star")
+            star4.image = UIImage(named: "star")
         }
         if(num==5){
-            star1.image = UIImage(named: "star")
+            star5.image = UIImage(named: "star")
         }
         self.note=num;
     }
@@ -93,20 +94,20 @@ class NoteController: UIViewController {
     }
     
     @IBAction func save(_ sender: UIButton) {
-        /*if(user.getId_utilisateur()==this.course.getId_passager()){
-            course.setNote_conducteur(this.note);
-            course.updateNoteConducteur();
-        } else if(user.getConducteur().getId_conducteur()==this.course.getId_conducteur()){
-            course.setNote_passager(this.note);
-            course.updateNotePassager();
+        if(self.user!.getId_utilisateur()==self.course!.getId_passager()){
+            course!.setNote_conducteur(note_conducteur: self.note);
+            course!.updateNoteConducteur();
+        } else if(user!.getConducteur()!.getId_conducteur()==self.course!.getId_conducteur()){
+            course!.setNote_passager(note_passager: self.note);
+            course!.updateNotePassager();
         }
-        course = Course.getBDCourseByID(course.getId_course());
-        if(course.getNote_conducteur()!=-1 && course.getNote_passager()!=-1){
-            course.setId_statut(5);
-            course.updateStatut();
+        self.course = Course.getBDCourseByID(id: self.course!.getId_course());
+        if(course!.getNote_conducteur() != -1 && course!.getNote_passager() != -1){
+            self.course!.setId_statut(id_statut: 5);
+            self.course!.updateStatut();
         }
-        setResult(RESULT_OK, new Intent().putExtra(Constants.COURSE_EXTRA, this.course));
-        finish();*/
+        delegate.pass(data: user!)
+        dismiss(animated: true, completion: nil)
     }
 
 }

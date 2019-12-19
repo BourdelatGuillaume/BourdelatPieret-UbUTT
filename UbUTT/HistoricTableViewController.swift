@@ -36,7 +36,7 @@ class HistoricTableViewController: UITableViewController {
         let course = user!.getCourses()[indexPath.row]
         
         cell.date.text = course.getDate()
-        cell.prix.text = String(course.getPrix_estime())+"€"
+        cell.prix.text = String(format:"%.1f", course.getPrix_estime())+"€"
         
         let conducteur:Conducteur? = course.getConducteur()
         
@@ -47,7 +47,9 @@ class HistoricTableViewController: UITableViewController {
         
         if (conducteur != nil) {
             cell.modele.text = conducteur!.getModele_voiture()
-            cell.note.text = String(course.getNote_conducteur())
+            if(course.getNote_conducteur() != -1){
+                cell.note.text = String(course.getNote_conducteur())
+            }
             let userConducteur:Utilisateur? = conducteur!.getUtilisateur()
             if(userConducteur != nil){
                 cell.nom.text = userConducteur!.getPrenom_utilisateur() + " " + userConducteur!.getNom_utilisateur()

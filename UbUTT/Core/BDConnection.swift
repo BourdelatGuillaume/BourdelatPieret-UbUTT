@@ -32,8 +32,10 @@ public class BDConnection{
         let task = session.dataTask(with: request) { (data, response, error) in
             defer { sem.signal() }
             //print(response!)
-            let httpResponse = response as! HTTPURLResponse
-            print("response code = \(httpResponse.statusCode)")
+            if(response != nil){
+                let httpResponse = response as! HTTPURLResponse
+                print("response code = \(httpResponse.statusCode)")
+            }
             //let dataRes:Data? = "[{\"id_utilisateur\": \"1\",\"nom_utilisateur\": \"Bob\",\"prenom_utilisateur\": \"Erwan\",\"adresse_email\": \"bob.erwan@gmail.com\",\"num_telephone\": \"+33606407808\",\"password\": \"test1234\",\"id_image\": \"0\"}]".data(using: .utf8)
             
             //print(String(decoding:data!,as:UTF8.self))
