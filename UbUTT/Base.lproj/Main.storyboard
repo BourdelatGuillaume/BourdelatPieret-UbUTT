@@ -1330,6 +1330,7 @@
                         <viewLayoutGuide key="safeArea" id="KDM-fD-qjR"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="HHJ-nG-Ads" id="Jn7-Ci-YeZ"/>
                         <outlet property="map" destination="Dsr-c0-GHf" id="qZ1-Y6-QDC"/>
                         <outlet property="timerView" destination="hyQ-VM-BcI" id="6wE-X1-eOg"/>
                     </connections>
