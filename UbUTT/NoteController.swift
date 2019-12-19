@@ -20,6 +20,7 @@ class NoteController: UIViewController {
     var user:Utilisateur?
     var course:Course?
     var delegate:isAbleToReceiveData!
+    var note:Int=0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,46 +49,47 @@ class NoteController: UIViewController {
     }
     
     public func clearStars(){
-        /*star_1.setImageResource(android.R.drawable.btn_star_big_off);
-        star_2.setImageResource(android.R.drawable.btn_star_big_off);
-        star_3.setImageResource(android.R.drawable.btn_star_big_off);
-        star_4.setImageResource(android.R.drawable.btn_star_big_off);
-        star_5.setImageResource(android.R.drawable.btn_star_big_off);*/
+        star1.image = UIImage(named: "star_unselected")
+        star2.image = UIImage(named: "star_unselected")
+        star3.image = UIImage(named: "star_unselected")
+        star4.image = UIImage(named: "star_unselected")
+        star5.image = UIImage(named: "star_unselected")
     }
     
     public func click(num:Int){
-        /*if(num>=1){
-        star_1.setImageResource(android.R.drawable.btn_star_big_on);
+        clearStars()
+        if(num>=1){
+            star1.image = UIImage(named: "star")
         }
         if(num>=2){
-        star_2.setImageResource(android.R.drawable.btn_star_big_on);
+            star1.image = UIImage(named: "star")
         }
         if(num>=3){
-        star_3.setImageResource(android.R.drawable.btn_star_big_on);
+            star1.image = UIImage(named: "star")
         }
         if(num>=4){
-        star_4.setImageResource(android.R.drawable.btn_star_big_on);
+            star1.image = UIImage(named: "star")
         }
         if(num==5){
-        star_5.setImageResource(android.R.drawable.btn_star_big_on);
+            star1.image = UIImage(named: "star")
         }
-        this.note=num;*/
+        self.note=num;
     }
     
     @objc public func tapStar1(){
-        
+        click(num: 1)
     }
     @objc public func tapStar2(){
-        
+        click(num: 2)
     }
     @objc public func tapStar3(){
-        
+        click(num: 3)
     }
     @objc public func tapStar4(){
-        
+        click(num: 4)
     }
     @objc public func tapStar5(){
-        
+        click(num: 5)
     }
     
     @IBAction func save(_ sender: UIButton) {
