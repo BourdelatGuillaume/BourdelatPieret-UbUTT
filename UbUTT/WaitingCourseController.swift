@@ -11,7 +11,7 @@ import GoogleMaps
 
 class WaitingCourseController: UIViewController {
 
-    @IBAction func cancelCourseActive(_ sender: UIButton) {
+    @IBAction func cancelCourse(_ sender: UIButton) {
         abortCourseActive()
     }
     
@@ -33,6 +33,7 @@ class WaitingCourseController: UIViewController {
     var conducteurMarker: GMSMarker = GMSMarker()
     
     @IBOutlet weak var timerView: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     
     public static let segueIdentifier = "segueBetweenConfirmAndWaiting"
     
@@ -72,7 +73,12 @@ class WaitingCourseController: UIViewController {
                         
                         let tmpArray = courseActive.getPosition_conducteur().split(separator: ",", maxSplits: 2)
                         let conducteurLocation = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
-                        self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
+                        DispatchQueue.main.async{
+                            self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
+                            self.timerView.isHidden = true
+                            self.cancelButton.isHidden = true
+                            self.map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                        }
                         
                         let result:Double = HaversineCalculator.calculateDistance(p1: self.originLocation.coordinate, p2: conducteurLocation)
                         
@@ -81,6 +87,34 @@ class WaitingCourseController: UIViewController {
                             self.courseActive.updateStatut()
                             self.originMarker.map = nil
                         }
+                        /*DispatchQueue.main.async{
+                            let tmpArray = courseActive.getPosition_conducteur().split(separator: ",", maxSplits: 2)
+                            let conducteurLocation = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
+                            self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
+                            
+                            let result:Double = HaversineCalculator.calculateDistance(p1: self.originLocation.coordinate, p2: conducteurLocation)
+                            
+                            if (result < 20) { // distance between conducteur and origin location is less than 20 meters
+                                self.courseActive.setId_statut(id_statut: 3)
+                                self.courseActive.updateStatut()
+                                self.originMarker.map = nil
+                            }
+                        }*/
+                        break;
+                    case 3:
+                        let tmpArray = courseActive.getPosition_conducteur().split(separator: ",", maxSplits: 2)
+                        let conducteurLocation = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
+                        self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
+                        
+                        let result:Double = HaversineCalculator.calculateDistance(p1: self.originLocation.coordinate, p2: conducteurLocation)
+                        
+                        if (result < 20) { // distance between conducteur and destination location is less than 20 meters
+                            self.courseActive.setId_statut(id_statut: 4)
+                            self.courseActive.updateStatut()
+                            self.eventRunnable?.stop()
+                            self.navigationController?.dismiss(animated: true)
+                        }
+                        
                         break;
                     default:
                         print("wrong id_statut")

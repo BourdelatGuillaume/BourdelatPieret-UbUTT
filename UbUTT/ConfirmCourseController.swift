@@ -107,7 +107,7 @@ class ConfirmCourseController: UIViewController {
     /* -------------------------------------------------------------------------------------- */
     
     private func getDistance() -> Double{
-        return HaversineCalculator.calculateDistance(p1: originLocation.coordinate, p2: destinationLocation.coordinate);
+        return HaversineCalculator.calculateDistance(p1: originLocation.coordinate, p2: destinationLocation.coordinate)
     }
 
 }

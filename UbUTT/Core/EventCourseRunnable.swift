@@ -10,7 +10,7 @@ import Foundation
 
 public class EventCourseRunnable {
     
-    let runQueue = DispatchQueue(label: "runnableQueue")
+    let runQueue = DispatchQueue(label: "runnableQueue", attributes: .concurrent)
     var handler: (Course, String) -> Void
     var isPaused = false
     var isRunning = true
@@ -28,7 +28,8 @@ public class EventCourseRunnable {
     public func run() {
         if(!isPaused) {
             let courseActive:Course? = user.getCourseActive()
-            handler(courseActive!, courseActive != nil ? "" : "Erreur lors de la récupération de la course active")
+            let dumpCourse = Course()
+            handler(courseActive ?? dumpCourse, courseActive != nil ? "" : "Erreur lors de la récupération de la course active")
         }
         if(isRunning) {
             runQueue.asyncAfter(deadline: .now() + .seconds(5)){

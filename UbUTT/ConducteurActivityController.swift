@@ -15,9 +15,12 @@ class ConducteurActivityController: UIViewController {
     public static let segueIdentifier: String = "segueBetweenWorkAndConducteurCourse"
     
     var location:CLLocation!
+    var locCoord:CLLocationCoordinate2D!
     var user:Conducteur!
     var course:Course!
     var destinationLoc:CLLocationCoordinate2D!
+    
+    var eventRunnable: EventCourseRunnable?
     
     @IBOutlet weak var map: GMSMapView!
     var conducteurMarker: GMSMarker = GMSMarker()
@@ -37,6 +40,31 @@ class ConducteurActivityController: UIViewController {
         let tmpArray = course.getPoint_depart().split(separator: ",", maxSplits: 2)
         passagerMarker.position = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
         passagerMarker.map = map
+        
+        eventRunnable = EventCourseRunnable(user:user.getUtilisateur()!){ courseActive, error in
+            if(error != ""){
+                print(error)
+            }else{
+                switch(courseActive.getId_statut()){
+                case 2: // conducteur en chemin
+                    self.updateLocationForCourse(course: courseActive)
+                    break;
+                case 3: // course en cours
+                    self.updateLocationForCourse(course: courseActive)
+                    break;
+                case 4: // en attente des notes (on le rajoute car le passager passe la course en statut et bloque le conducteur du coup)
+                    let result:Double = HaversineCalculator.calculateDistance(p1: self.location.coordinate, p2: self.destinationLoc)
+                    
+                    if (result < 20) { // distance between conducteur and destination location is less than 20 meters
+                        self.dismiss(animated:true)
+                    }
+                    break;
+                default:
+                    print("wrong id_statut")
+                    break;
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +108,11 @@ class ConducteurActivityController: UIViewController {
     
     /* -------------------------------------------------------------------------------------- */
     
+    func updateLocationForCourse(course: Course){
+        course.setPosition_conducteur(position_conducteur: String(locCoord.latitude)+","+String(locCoord.longitude))
+        course.updatePosition_conducteur()
+    }
+    
 }
 /* LOCATION MANAGER */
 extension ConducteurActivityController: CLLocationManagerDelegate {
@@ -105,6 +138,7 @@ extension ConducteurActivityController: CLLocationManagerDelegate {
         // .requestLocation will only pass one location to the locations array hence we can access it by taking the first element of the array
         if let loc = locations.first {
             self.location = loc
+            self.locCoord = loc.coordinate
             updateConducteurMarker()
         }
     }

@@ -46,7 +46,20 @@ class WorkTableViewController: UITableViewController {
         let course = courses[indexPath.row]
         
         cell.labelPrix.text = String(format: "%.0f€", course.getPrix_estime())
-        cell.labelDestination.text = "100 m" // c'est la distance
+        
+        let tmpOrigin = course.getPoint_depart().split(separator: ",", maxSplits: 2)
+        let originLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: Double(tmpOrigin[0])!, longitude: Double(tmpOrigin[1])!)
+        let tmpDest = course.getPoint_arrivee().split(separator: ",", maxSplits: 2)
+        let destinationLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: Double(tmpDest[0])!, longitude: Double(tmpDest[1])!)
+        
+        var distance:Double = HaversineCalculator.calculateDistance(p1: originLocation, p2: destinationLocation)
+        var unite = "m";
+        if distance > 1000 {
+            distance = distance/1000;
+            unite = "km";
+        }
+        cell.labelDestination.text = String.localizedStringWithFormat("%.2f %@", distance, unite) // c'est la distance
+        
         cell.takeButton.tag = indexPath.row
         cell.takeButton.addTarget(self, action: #selector(courseSelected(_:)), for: .touchUpInside)
         

@@ -97,7 +97,7 @@ public class Utilisateur : Entity{
     }
     
     public func getNoteUtilisateur() -> Double{
-        var courses:Array<Course>  = self.getCourses()
+        let courses:Array<Course>  = self.getCourses()
         var res:Double = 5.0
         for c in courses {
             if(c.getNote_passager() != -1) {
