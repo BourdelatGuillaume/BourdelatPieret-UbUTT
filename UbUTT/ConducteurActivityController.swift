@@ -59,12 +59,13 @@ class ConducteurActivityController: UIViewController {
                 case 3: // course en cours
                     DispatchQueue.main.async{
                         self.destinationMarker.map = self.map
+                        self.passagerMarker.icon = nil
                         self.passagerMarker.map = nil
                     }
                     self.updateLocationForCourse(course: courseActive)
                     break;
                 case 4: // en attente des notes (on le rajoute car le passager passe la course en statut et bloque le conducteur du coup)
-                    self.dismiss(animated:true)
+                    self.dismiss(animated: true)
                     break;
                 default:
                     print("wrong id_statut")

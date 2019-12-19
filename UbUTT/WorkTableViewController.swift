@@ -11,6 +11,8 @@ import GoogleMapsBase
 
 class WorkTableViewController: UITableViewController {
 
+    var courseHasStarted = false
+    
     public static let segueIdentifier: String = "segueBetweenWorkActivityAndWorkTable"
     var user: Conducteur!
     var lastLocation: CLLocation!
@@ -27,6 +29,12 @@ class WorkTableViewController: UITableViewController {
         courses = Course.getAvailableCoursesForConducteur(user: user!)
         if(courses.count < 1){
             self.dismiss(animated:true)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(courseHasStarted){
+            self.dismiss(animated: true)
         }
     }
 
@@ -74,9 +82,8 @@ class WorkTableViewController: UITableViewController {
         selectedCourse.updatePosition_conducteur()
         selectedCourse.updateId_conducteur()
         selectedCourse.updateStatut()
-        //courses.remove(at: sender.tag)
-        //self.tableView.reload
         performSegue(withIdentifier: ConducteurActivityController.segueIdentifier, sender: self)
+        courseHasStarted = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

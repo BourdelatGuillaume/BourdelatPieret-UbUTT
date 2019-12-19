@@ -41,6 +41,7 @@ class WaitingCourseController: UIViewController {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem?.action = #selector(WaitingCourseController.back(sender:))
         map.isUserInteractionEnabled = false
+        self.navigationItem.hidesBackButton = true
         
         if user != nil && destinationLocation != nil && originLocation != nil && courseActive != nil {
             originMarker = GMSMarker()
