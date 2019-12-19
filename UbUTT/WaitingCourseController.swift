@@ -85,26 +85,17 @@ class WaitingCourseController: UIViewController {
                         if (result < 20) { // distance between conducteur and origin location is less than 20 meters
                             self.courseActive.setId_statut(id_statut: 3)
                             self.courseActive.updateStatut()
-                            self.originMarker.map = nil
-                        }
-                        /*DispatchQueue.main.async{
-                            let tmpArray = courseActive.getPosition_conducteur().split(separator: ",", maxSplits: 2)
-                            let conducteurLocation = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
-                            self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
-                            
-                            let result:Double = HaversineCalculator.calculateDistance(p1: self.originLocation.coordinate, p2: conducteurLocation)
-                            
-                            if (result < 20) { // distance between conducteur and origin location is less than 20 meters
-                                self.courseActive.setId_statut(id_statut: 3)
-                                self.courseActive.updateStatut()
+                            DispatchQueue.main.async{
                                 self.originMarker.map = nil
                             }
-                        }*/
+                        }
                         break;
                     case 3:
                         let tmpArray = courseActive.getPosition_conducteur().split(separator: ",", maxSplits: 2)
                         let conducteurLocation = CLLocationCoordinate2D(latitude: Double(tmpArray[0])!, longitude: Double(tmpArray[1])!)
-                        self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
+                        DispatchQueue.main.async{
+                            self.updateConducteurMarker(conducteurLatLng: conducteurLocation)
+                        }
                         
                         let result:Double = HaversineCalculator.calculateDistance(p1: self.originLocation.coordinate, p2: conducteurLocation)
                         
